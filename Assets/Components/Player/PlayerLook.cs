@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    [SerializeField] private Transform onLook;
-    [SerializeField] private float maxLook = 5f;
+    [SerializeField] private float maxLook = 1f;
+    [SerializeField] private Vector2 look;
     
     private PlayerInputManager inputManager;
     private CameraMain cameraManager;
@@ -18,13 +18,9 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        Vector3 lookObjectVector = this.onLook.localPosition;
-        Vector2 lookVector = this.inputManager.lookInput * Time.deltaTime;
-        this.onLook.localPosition = new Vector3(
-            Mathf.Clamp(lookObjectVector.x + lookVector.x, -this.maxLook, this.maxLook), 
-            0, 
-            Mathf.Clamp(lookObjectVector.z + lookVector.y, -this.maxLook, this.maxLook));
-        
-        this.cameraManager.offset = new Vector3(this.onLook.localPosition.x, this.cameraManager.offset.y, this.onLook.localPosition.z);
+        Vector2 lookVector = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - (new Vector2(Screen.width * .5f, Screen.height * .5f));
+        this.look = lookVector / new Vector2(Screen.width, Screen.height);
+
+        CameraMain.instance.lookOffset = new Vector3(this.look.x, 0f, this.look.y) * this.maxLook;
     }
 }

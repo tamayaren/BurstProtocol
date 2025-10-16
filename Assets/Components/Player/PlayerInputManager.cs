@@ -8,10 +8,8 @@ public class PlayerInputManager : MonoBehaviour
     private InputManager inputSystem;
 
     public Vector2 movementInput;
-    public Vector2 lookInput;
 
     private InputAction movementAction;
-    private InputAction lookAction;
     
     private void Awake()
     {
@@ -22,7 +20,6 @@ public class PlayerInputManager : MonoBehaviour
     private void Start()
     {
         this.movementAction = this.inputSystem.FindAction("Move");
-        this.lookAction = this.inputSystem.FindAction("Look");
     }
 
     private void OnEnable()
@@ -42,6 +39,5 @@ public class PlayerInputManager : MonoBehaviour
         if (this.inputSystem == null) return;
         
         this.movementInput = this.movementAction.ReadValue<Vector2>();
-        this.lookInput = this.lookAction.ReadValue<Vector2>();
     }
 }
