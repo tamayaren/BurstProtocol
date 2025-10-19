@@ -9,6 +9,7 @@ public class PlayerInputManager : MonoBehaviour
 
     public Vector2 movementInput;
 
+    public InputAction dashAction;
     private InputAction movementAction;
     
     private void Awake()
@@ -20,6 +21,7 @@ public class PlayerInputManager : MonoBehaviour
     private void Start()
     {
         this.movementAction = this.inputSystem.FindAction("Move");
+        this.dashAction = this.inputSystem.FindAction("Dash");
     }
 
     private void OnEnable()
