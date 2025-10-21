@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,7 +6,6 @@ public class Entity : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
-
     [SerializeField] private EntityState _entityState = EntityState.Alive;
 
     public int Health
@@ -44,8 +44,13 @@ public class Entity : MonoBehaviour
     public UnityEvent<int> HealthChanged = new UnityEvent<int>();
     public UnityEvent<int> MaxHealthChanged = new UnityEvent<int>();
     public UnityEvent<EntityState> EntityStateChanged = new UnityEvent<EntityState>();
-    
-    
+
+    public void FixedUpdate()
+    {
+        Vector3 vector3 = this.transform.position;
+        vector3.y = 1f;
+        this.transform.position = vector3;
+    }
 }
 
 public enum EntityState
@@ -53,4 +58,5 @@ public enum EntityState
     Alive,
     Stunned,
     Dead,
+    Invincible
 }

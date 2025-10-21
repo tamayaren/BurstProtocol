@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 25670541}
   - component: {fileID: 25670543}
   - component: {fileID: 25670542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Texture
   m_TagString: RenderSprite
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162844530}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OnLook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 316845790}
   - component: {fileID: 316845791}
   - component: {fileID: 316845792}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Texture
   m_TagString: RenderSprite
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
@@ -742,7 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792065263}
   - component: {fileID: 792065262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -1067,7 +1067,7 @@ GameObject:
   - component: {fileID: 1182549582}
   - component: {fileID: 1182549581}
   - component: {fileID: 1182549580}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 1491402242}
   - component: {fileID: 1491402244}
   - component: {fileID: 1491402243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpriteShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   - component: {fileID: 1696883193}
   - component: {fileID: 1696883195}
   - component: {fileID: 1696883194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpriteShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026186826}
   - component: {fileID: 2026186827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1425,6 +1425,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
+  dashAction:
+    m_Name: Dash
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cf4b848e-8fc8-4644-b545-10859c975ba9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &2106145373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,7 +1449,7 @@ GameObject:
   - component: {fileID: 2106145380}
   - component: {fileID: 2106145381}
   - component: {fileID: 2106145382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1460,16 +1469,16 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2.03
   m_Radius: 0.87
-  m_SlopeLimit: 45
+  m_SlopeLimit: 0
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.22
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2106145377
@@ -1504,6 +1513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   baseSpeed: 6
+  isDashing: 0
+  canDash: 1
+  dashTime: 1
 --- !u!114 &2106145379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,6 +1584,8 @@ MonoBehaviour:
   LevelChanged:
     m_PersistentCalls:
       m_Calls: []
+  dashRange: 1
+  dashCooldown: 1
 --- !u!114 &2106145382
 MonoBehaviour:
   m_ObjectHideFlags: 0

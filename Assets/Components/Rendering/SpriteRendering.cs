@@ -14,6 +14,9 @@ public class SpriteRendering : MonoBehaviour
         Vector3 euler = rotation.eulerAngles;
         foreach (GameObject sprite in GameObject.FindGameObjectsWithTag("RenderSprite"))
         {
+            SpriteRenderer renderer = sprite.GetComponent<SpriteRenderer>();
+            if (renderer != null)
+                renderer.renderingLayerMask = unchecked((uint)~0);
             sprite.transform.rotation = Quaternion.Euler(euler.x, euler.y, 0f);
             
             GameObject spriteShadow = GameObject.Find("SpriteShadow");
