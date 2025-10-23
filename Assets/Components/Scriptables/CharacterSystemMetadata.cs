@@ -8,6 +8,8 @@ public class CharacterSystemMetadata : ScriptableObject
     public AnimatorController animator;
     public Sprite sprite;
 
+    public int baseHealth;
+
     public int baseAttack;
     public int baseDefense;
     public int basePathAttack;

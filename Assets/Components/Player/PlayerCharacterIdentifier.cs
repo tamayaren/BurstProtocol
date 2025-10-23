@@ -8,9 +8,13 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private EntityStats stats;
+    [SerializeField] private Entity entity;
 
     private void BaseStatMake()
     {
+        this.entity.MaxHealth = this.currentCharacter.baseHealth;
+        this.entity.Health = this.currentCharacter.baseHealth;
+        
         this.stats.attack = this.currentCharacter.baseAttack;
         this.stats.defense = this.currentCharacter.baseDefense;
         this.stats.speed = this.currentCharacter.baseSpeed;
@@ -28,6 +32,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
         this.animator.runtimeAnimatorController = this.currentCharacter.animator;
 
         this.characterController = GetComponent<CharacterController>();
+        this.entity = GetComponent<Entity>();
         
         BaseStatMake();
     }
