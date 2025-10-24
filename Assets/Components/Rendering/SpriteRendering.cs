@@ -17,11 +17,15 @@ public class SpriteRendering : MonoBehaviour
             SpriteRenderer renderer = sprite.GetComponent<SpriteRenderer>();
             if (renderer != null)
                 renderer.renderingLayerMask = unchecked((uint)~0);
-            sprite.transform.rotation = Quaternion.Euler(euler.x, euler.y, 0f);
+            sprite.transform.rotation = Quaternion.Euler(euler.x, euler.y, sprite.transform.rotation.z);
             
             GameObject spriteShadow = GameObject.Find("SpriteShadow");
             if (spriteShadow)
+            {
+                Vector2 spriteSize = renderer.bounds.size * (sprite.transform.localScale.y * .2f);
                 spriteShadow.transform.rotation = Quaternion.Euler(-euler.x, euler.y, 0f);
+                spriteShadow.transform.localScale = new Vector3(spriteSize.x, spriteSize.y, 1f) * .25f;
+            }
         }
     }
 }

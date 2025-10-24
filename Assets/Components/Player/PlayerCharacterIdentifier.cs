@@ -10,6 +10,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     [SerializeField] private EntityStats stats;
     [SerializeField] private Entity entity;
 
+    [SerializeField] private Renderer renderer;
     private void BaseStatMake()
     {
         this.entity.MaxHealth = this.currentCharacter.baseHealth;
@@ -33,6 +34,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
 
         this.characterController = GetComponent<CharacterController>();
         this.entity = GetComponent<Entity>();
+        this.renderer = this.animator.gameObject.GetComponent<Renderer>();
         
         BaseStatMake();
     }
@@ -43,6 +45,10 @@ public class PlayerCharacterIdentifier : MonoBehaviour
         this.animator.SetFloat("Speed", this.characterController.velocity.magnitude);
 
         if (movement.sqrMagnitude > 0.01f)
-            this.spriteRenderer.flipX = Vector3.Dot(movement.normalized, this.transform.right) < 0f;
+        {
+            bool isRotation = Vector3.Dot(movement.normalized, this.transform.right) < 0f;
+            
+            this.spriteRenderer.flipX = isRotation;
+        }
     }
 }

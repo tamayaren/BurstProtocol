@@ -11,17 +11,16 @@ public class PlayerInputManager : MonoBehaviour
 
     public InputAction dashAction;
     private InputAction movementAction;
+    public InputAction shootAction;
     
     private void Awake()
     {
         if (instance == null) instance = this;
         this.inputSystem = new InputManager();
-    }
-
-    private void Start()
-    {
+        
         this.movementAction = this.inputSystem.FindAction("Move");
         this.dashAction = this.inputSystem.FindAction("Dash");
+        this.shootAction = this.inputSystem.FindAction("Attack");
     }
 
     private void OnEnable()
