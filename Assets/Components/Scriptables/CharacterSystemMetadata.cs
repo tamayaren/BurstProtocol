@@ -24,5 +24,18 @@ public class CharacterSystemMetadata : ScriptableObject
     public float dashRange;
     public float dashCooldown;
 
+    public float fireRate;
+    public float projectileSpeed;
+    public float baseAttackDamage;
+    public FireMode baseFireMode;
+
     public AnimationClip[] animations;
+}
+
+public enum FireMode
+{
+    Normal,
+    Automatic,
+    SemiAutomatic,
+    Dynamic
 }

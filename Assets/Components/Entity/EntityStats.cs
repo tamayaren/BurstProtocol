@@ -14,6 +14,9 @@ public class EntityStats : MonoBehaviour
     
     [SerializeField] [Range(0, 80)] private float _critRate = 5f;
     [SerializeField] [Range(0, 400)] private float _critDamage = 10f;
+
+    [SerializeField] private float fireRate;
+    [SerializeField] private float attackDamage;
     
     public UnityEvent<string, int, int> StatChanged = new UnityEvent<string, int, int>();
     public UnityEvent<string, float, float> CritChanged = new UnityEvent<string, float, float>();
@@ -21,6 +24,12 @@ public class EntityStats : MonoBehaviour
 
     public float dashRange = 1f;
     public float dashCooldown = 1f;
+
+    public void FeedInitializer()
+    {
+        
+    }
+    
     public int level { get => this._level; set { this.LevelChanged.Invoke(this._level, value); this._level = value; } }
 
     private void _StatChanged(string statName, int oldValue, int value) => this.StatChanged.Invoke(statName,  oldValue, value);

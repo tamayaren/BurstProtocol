@@ -45,6 +45,15 @@ public class Entity : MonoBehaviour
     public UnityEvent<int> MaxHealthChanged = new UnityEvent<int>();
     public UnityEvent<EntityState> EntityStateChanged = new UnityEvent<EntityState>();
 
+    private void Start()
+    {
+        this.HealthChanged.AddListener(health =>
+        {
+            if (health <= 0)
+                this.EntityState = EntityState.Dead;
+        });
+    }
+
     public void FixedUpdate()
     {
         Vector3 vector3 = this.transform.position;
