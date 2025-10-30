@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
 {
     private Rigidbody rb;
     private Entity entityOwner;
+    private DemoSpawner spawner;
 
     private float speed;
     private bool started = false;
@@ -15,7 +16,8 @@ public class Projectile : MonoBehaviour
     private IEnumerator SelfDestroy()
     {
         yield return new WaitForSeconds(10f / this.speed);
-        Destroy(this.gameObject);
+        spawner.spawn.SetActive(false);
+        //Destroy(this.gameObject);
     }
     
     public void Initialize(Entity owner, float speed, Vector3 direction)

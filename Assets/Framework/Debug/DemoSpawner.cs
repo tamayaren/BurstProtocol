@@ -1,10 +1,17 @@
+using System.Collections.Generic;
+using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 public class DemoSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject spawn;
+    public List<GameObject> spawns;
+    public GameObject spawn;
     [SerializeField] private GameObject target;
 
+    private int enemyamount = 30;
     private Vector2 spawnInterval = new Vector2(0.85f, 2f);
     private Vector2 objRange = new Vector2(2f, 5f);
 
@@ -12,22 +19,26 @@ public class DemoSpawner : MonoBehaviour
     private float t;
 
     private void Start()
-    {
+    { spawns = new List<GameObject>();
+        GameObject spawnenemies;
         this.toInf = Random.Range(this.spawnInterval.x, this.spawnInterval.y);
+        for (int i = 0; i < enemyamount; i++)
+        {
+            spawnenemies = Instantiate(spawn);
+            spawnenemies.SetActive(false);
+            spawns.Add(spawnenemies);
+        }
     }
+    
     private void Update()
     {
         if (this.t > this.toInf)
         {
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length < 16f)
-            {
+            if ( GameObject.FindGameObjectsWithTag("Enemy").Length < 16f)
+            {               
+                spawn.SetActive(true);
                 int objRange = (int)Random.Range(this.objRange.x, this.objRange.y);
-                for (int i = 0; i < objRange; i++)
-                {
-                    Instantiate(this.spawn, (this.target.transform.position + new Vector3(Random.Range(-3f, 3f), this.target.transform.position.y, Random.Range(-3f, 3f)) * Random.Range(3, 12)), Quaternion.identity);
-                }
             }
-            
             
             this.t = 0f;
             this.toInf = Random.Range(this.spawnInterval.x, this.spawnInterval.y);
@@ -35,5 +46,7 @@ public class DemoSpawner : MonoBehaviour
 
         this.t += Time.deltaTime;
     }
+
+    
 
 }
