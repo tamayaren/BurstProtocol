@@ -313,49 +313,49 @@ namespace DG.Tweening
         public class WaitForCompletion : CustomYieldInstruction
         {
             public override bool keepWaiting { get {
-                return t.active && !t.IsComplete();
+                return this.t.active && !this.t.IsComplete();
             }}
             readonly Tween t;
             public WaitForCompletion(Tween tween)
             {
-                t = tween;
+                this.t = tween;
             }
         }
 
         public class WaitForRewind : CustomYieldInstruction
         {
             public override bool keepWaiting { get {
-                return t.active && (!t.playedOnce || t.position * (t.CompletedLoops() + 1) > 0);
+                return this.t.active && (!this.t.playedOnce || this.t.position * (this.t.CompletedLoops() + 1) > 0);
             }}
             readonly Tween t;
             public WaitForRewind(Tween tween)
             {
-                t = tween;
+                this.t = tween;
             }
         }
 
         public class WaitForKill : CustomYieldInstruction
         {
             public override bool keepWaiting { get {
-                return t.active;
+                return this.t.active;
             }}
             readonly Tween t;
             public WaitForKill(Tween tween)
             {
-                t = tween;
+                this.t = tween;
             }
         }
 
         public class WaitForElapsedLoops : CustomYieldInstruction
         {
             public override bool keepWaiting { get {
-                return t.active && t.CompletedLoops() < elapsedLoops;
+                return this.t.active && this.t.CompletedLoops() < this.elapsedLoops;
             }}
             readonly Tween t;
             readonly int elapsedLoops;
             public WaitForElapsedLoops(Tween tween, int elapsedLoops)
             {
-                t = tween;
+                this.t = tween;
                 this.elapsedLoops = elapsedLoops;
             }
         }
@@ -363,13 +363,13 @@ namespace DG.Tweening
         public class WaitForPosition : CustomYieldInstruction
         {
             public override bool keepWaiting { get {
-                return t.active && t.position * (t.CompletedLoops() + 1) < position;
+                return this.t.active && this.t.position * (this.t.CompletedLoops() + 1) < this.position;
             }}
             readonly Tween t;
             readonly float position;
             public WaitForPosition(Tween tween, float position)
             {
-                t = tween;
+                this.t = tween;
                 this.position = position;
             }
         }
@@ -377,12 +377,12 @@ namespace DG.Tweening
         public class WaitForStart : CustomYieldInstruction
         {
             public override bool keepWaiting { get {
-                return t.active && !t.playedOnce;
+                return this.t.active && !this.t.playedOnce;
             }}
             readonly Tween t;
             public WaitForStart(Tween tween)
             {
-                t = tween;
+                this.t = tween;
             }
         }
     }

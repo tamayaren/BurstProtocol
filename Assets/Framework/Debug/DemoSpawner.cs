@@ -22,16 +22,16 @@ public class DemoSpawner : MonoBehaviour
     private float t;
 
     private void Start()
-    { 
-        spawns = new List<GameObject>();
+    {
+        this.spawns = new List<GameObject>();
         
         this.toInf = Random.Range(this.spawnInterval.x, this.spawnInterval.y);
         
-        for (int i = 0; i < enemypoolamount; i++)
+        for (int i = 0; i < this.enemypoolamount; i++)
         {
-            GameObject spawnenemies = Instantiate(spawn, enemyParent);
+            GameObject spawnenemies = Instantiate(this.spawn, this.enemyParent);
             spawnenemies.SetActive(false);
-            spawns.Add(spawnenemies);
+            this.spawns.Add(spawnenemies);
         }
     }
     
@@ -43,11 +43,11 @@ public class DemoSpawner : MonoBehaviour
             {   
                 float range = Random.Range(this.objRange.x, this.objRange.y);
 
-                GameObject objToSpawn = spawns.Find(obj => !obj.activeInHierarchy);
+                GameObject objToSpawn = this.spawns.Find(obj => !obj.activeInHierarchy);
 
                 if (objToSpawn != null)
                 {
-                    Vector3 spawnPos = target.transform.position + Random.insideUnitSphere * range;
+                    Vector3 spawnPos = this.target.transform.position + Random.insideUnitSphere * range;
                     spawnPos.y = 0;
                     objToSpawn.transform.position = spawnPos;
                     objToSpawn.SetActive(true);
@@ -62,7 +62,4 @@ public class DemoSpawner : MonoBehaviour
 
         this.t += Time.deltaTime;
     }
-
-    
-
 }

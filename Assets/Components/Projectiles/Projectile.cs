@@ -1,4 +1,5 @@
 using System.Collections;
+using Mono.Cecil;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -13,6 +14,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
+        this.wavemanager = GameObject.FindFirstObjectByType<WaveGameplay>();
     }
 
     private IEnumerator SelfDestroy()
@@ -56,8 +58,8 @@ public class Projectile : MonoBehaviour
               
               //one that kills enemeies
               entity.gameObject.SetActive(false);
-              wavemanager.enemieskilled++;
-              Debug.Log(wavemanager.enemieskilled);
+              this.wavemanager.enemieskilled++;
+              Debug.Log(this.wavemanager.enemieskilled);
           }
           
           //one that removes the projectiles

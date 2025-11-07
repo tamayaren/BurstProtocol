@@ -10,11 +10,26 @@ public class WaveGameplay : MonoBehaviour
     
     public UnityEvent<int> WaveChanged = new UnityEvent<int>();
 
+    [SerializeField] private GameObject ui;
+    
     public void NewWave()
     {
-        if (enemieskilled == enemiesrequired)
+        if (this.enemieskilled >= this.enemiesrequired)
         {
-            Time.timeScale = 0; 
+            this.wave++;
+            this.enemieskilled = 0;
+
+            this.enemiesrequired += 5 * this.wave;
+            Time.timeScale = 0f;
+            this.ui.SetActive(true);
         }
     }
+
+    public void Click()
+    {
+        this.ui.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void Update() => this.NewWave();
 }
