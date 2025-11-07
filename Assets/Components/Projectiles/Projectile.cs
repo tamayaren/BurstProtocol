@@ -5,19 +5,20 @@ public class Projectile : MonoBehaviour
 {
     private Rigidbody rb;
     private Entity entityOwner;
-    private DemoSpawner spawner;
-
+    private WaveGameplay wavemanager;
     private float speed;
     private bool started = false;
     private Vector3 direction;
 
-    private void Start() => this.rb = this.GetComponent<Rigidbody>();
+    private void Start()
+    {
+        this.rb = this.GetComponent<Rigidbody>();
+    }
 
     private IEnumerator SelfDestroy()
     {
         yield return new WaitForSeconds(10f / this.speed);
-        spawner.spawn.SetActive(false);
-        //Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
     
     public void Initialize(Entity owner, float speed, Vector3 direction)
@@ -53,10 +54,14 @@ public class Projectile : MonoBehaviour
               Entity entity = hit.collider.gameObject.GetComponent<Entity>();
               if (!entity) return;
               
-              Destroy(entity.gameObject);
+              //one that kills enemeies
+              entity.gameObject.SetActive(false);
+              wavemanager.enemieskilled++;
+              Debug.Log(wavemanager.enemieskilled);
           }
           
-          Destroy(this.gameObject);
+          //one that removes the projectiles
+          this.gameObject.SetActive(false);
       }
     }
 }
