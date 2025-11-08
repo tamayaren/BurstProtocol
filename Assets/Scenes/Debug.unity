@@ -5364,6 +5364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
+  skillActionRequest:
+    m_PersistentCalls:
+      m_Calls: []
   dashAction:
     m_Name: Dash
     m_Type: 0
@@ -5378,6 +5381,40 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 059c773e-e7f8-4613-a39a-414eaf170b17
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  movementAction:
+    m_Name: Movement
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b3d2abc1-a270-4a7f-89ec-a35ce6018ae8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  skills:
+  - m_Name: Element 0
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9489099e-cf4d-4b4f-b5a7-19472b4a6c4d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  - m_Name: Element 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 152e9902-70d8-4206-80ef-d1bcc4733590
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  - m_Name: Element 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a9a62026-60e0-405c-a636-143be1ff27bb
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -5398,6 +5435,7 @@ GameObject:
   - component: {fileID: 2106145381}
   - component: {fileID: 2106145382}
   - component: {fileID: 2106145383}
+  - component: {fileID: 2106145384}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5575,6 +5613,25 @@ MonoBehaviour:
   canShoot: 1
   fireRate: 0.2
   speed: 32
+--- !u!114 &2106145384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106145373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8370ae2b755474bce86dc972a0f2837a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputManager: {fileID: 2026186827}
+  entity: {fileID: 2106145380}
+  canSkill: 1
+  skills:
+  - {fileID: 11400000, guid: 1cb1671196fb74feba7e013ed3d4c490, type: 2}
+  - {fileID: 11400000, guid: 1cb1671196fb74feba7e013ed3d4c490, type: 2}
+  - {fileID: 11400000, guid: 1cb1671196fb74feba7e013ed3d4c490, type: 2}
 --- !u!1 &2140412611
 GameObject:
   m_ObjectHideFlags: 0

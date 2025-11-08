@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill 1",
+                    "name": "Skill1",
                     "type": "Button",
                     "id": "f013ca1c-d81a-453a-b046-d22a4de4d002",
                     "expectedControlType": "",
@@ -96,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill 2",
+                    "name": "Skill2",
                     "type": "Button",
                     "id": "d3af8516-9744-4d5c-a5d4-a6b009a4aa8f",
                     "expectedControlType": "",
@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill 3",
+                    "name": "Skill3",
                     "type": "Button",
                     "id": "d8b8f473-bf5b-4c45-a77f-5dcd0af9b085",
                     "expectedControlType": "",
@@ -573,7 +573,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill 1",
+                    "action": "Skill1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -584,7 +584,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill 1",
+                    "action": "Skill1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -595,7 +595,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill 2",
+                    "action": "Skill2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -606,7 +606,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill 2",
+                    "action": "Skill2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -617,7 +617,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill 3",
+                    "action": "Skill3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -628,7 +628,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill 3",
+                    "action": "Skill3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,3 +1,4 @@
+using SkillSet;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ public class CharacterSystemMetadata : ScriptableObject
     public FireMode baseFireMode;
 
     public AnimationClip[] animations;
+    public SkillLogic[] skills;
 }
 
 public enum FireMode

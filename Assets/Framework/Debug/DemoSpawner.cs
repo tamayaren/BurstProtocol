@@ -27,6 +27,7 @@ public class DemoSpawner : MonoBehaviour
         
         this.toInf = Random.Range(this.spawnInterval.x, this.spawnInterval.y);
         
+        this.target = GameObject.FindGameObjectWithTag("Player");
         for (int i = 0; i < this.enemypoolamount; i++)
         {
             GameObject spawnenemies = Instantiate(this.spawn, this.enemyParent);
@@ -51,9 +52,7 @@ public class DemoSpawner : MonoBehaviour
                     spawnPos.y = 0;
                     objToSpawn.transform.position = spawnPos;
                     objToSpawn.SetActive(true);
-                    Debug.Log("set enemies spawn to active");
                 }
-               
             }
             
             this.t = 0f;
