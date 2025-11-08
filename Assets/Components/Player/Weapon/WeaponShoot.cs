@@ -1,15 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
-    private GameObject projectile;
-
+    
+    private List<GameObject> projectiles;
+    private GameObject projectileParent;
+    private int projectileamount = 3;
+    private GameObject projectileHolder; 
     public Entity owner;
     
     private void Start()
     {
-        this.projectile = GameObject.Find("Projectiles");
+        this.projectileParent = GameObject.Find("Projectiles");
+        
+        this.projectiles = new List<GameObject>();
+        
+        for (int i = 0; i < this.projectileamount; i++)
+        {
+            GameObject projectileHolder = Instantiate(this.bullet,this.transform.position,Quaternion.identity, this.projectileParent.transform);
+            projectileHolder.SetActive(false);
+            projectiles.Add(projectileHolder);
+        }
     }
     
     public void Shoot(Sprite sprite, float speed, Vector3 target)
@@ -28,7 +41,16 @@ public class WeaponShoot : MonoBehaviour
 
         dir.Normalize();
 
-        GameObject proj = Instantiate(this.bullet, this.transform.position, Quaternion.identity, this.projectile.transform);
+        GameObject proj = this.projectiles.Find(obj => !obj.activeInHierarchy);
+        
+        //GameObject proj = Instantiate(this.bullet, this.transform.position, Quaternion.identity, this.projectile.transform);
+
+        if (proj != null)
+        {
+            proj.transform.position = owner.transform.position;
+            proj.SetActive(true);
+            Debug.Log("shooting");
+        }
         
         Debug.Log("init");
         SpriteRenderer spriteRenderer = proj.GetComponent<SpriteRenderer>();

@@ -56,7 +56,7 @@ public class Projectile : MonoBehaviour
               Entity entity = hit.collider.gameObject.GetComponent<Entity>();
               if (!entity) return;
               
-              //one that kills enemeies
+              //one that kills enemies
               entity.gameObject.SetActive(false);
               this.wavemanager.enemieskilled++;
               Debug.Log(this.wavemanager.enemieskilled);

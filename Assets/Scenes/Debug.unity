@@ -404,6 +404,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1546700025}
+  - {fileID: 1911142834}
   m_Father: {fileID: 2106145377}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &138613390
@@ -4057,9 +4058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawns: []
-  spawn: {fileID: 0}
-  target: {fileID: 0}
-  enemyParent: {fileID: 0}
+  spawn: {fileID: 7801577578134624177, guid: d802ee74bed688d4d911b22cc0aed199, type: 3}
+  target: {fileID: 2106145373}
+  enemyParent: {fileID: 1854813628}
 --- !u!4 &1828109724
 Transform:
   m_ObjectHideFlags: 0
@@ -4618,12 +4619,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911142833}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7153352, y: 4.0747986, z: -3.0262084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.7153352, y: 3.1087985, z: -3.0262084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 138613389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2012275710
 GameObject:
@@ -5035,7 +5036,6 @@ SceneRoots:
   - {fileID: 792065263}
   - {fileID: 585310612}
   - {fileID: 1204214157}
-  - {fileID: 1911142834}
   - {fileID: 1854813628}
   - {fileID: 1828109724}
   - {fileID: 245894735}

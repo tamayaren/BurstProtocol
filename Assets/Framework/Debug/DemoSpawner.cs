@@ -9,11 +9,11 @@ public class DemoSpawner : MonoBehaviour
 {
     public List<GameObject> spawns;
     public GameObject spawn;
-    [SerializeField] private GameObject target;
+    public GameObject target;
     
     GameObject spawnenemies;
     public Transform enemyParent;
-    private int enemypoolamount = 30;
+    private int enemypoolamount = 10;
     
     private Vector2 spawnInterval = new Vector2(0.85f, 2f);
     private Vector2 objRange = new Vector2(2f, 5f);
@@ -47,7 +47,7 @@ public class DemoSpawner : MonoBehaviour
 
                 if (objToSpawn != null)
                 {
-                    Vector3 spawnPos = this.target.transform.position + Random.insideUnitSphere * range;
+                    Vector3 spawnPos = target.transform.position + Random.insideUnitSphere * range;
                     spawnPos.y = 0;
                     objToSpawn.transform.position = spawnPos;
                     objToSpawn.SetActive(true);
