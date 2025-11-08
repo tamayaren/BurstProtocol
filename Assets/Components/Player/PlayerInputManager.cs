@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
@@ -9,9 +10,13 @@ public class PlayerInputManager : MonoBehaviour
 
     public Vector2 movementInput;
 
+    public UnityEvent<int> skillActionRequest = new UnityEvent<int>();
+    
     public InputAction dashAction;
-    private InputAction movementAction;
     public InputAction shootAction;
+    
+    [SerializeField] private InputAction movementAction;
+    [SerializeField] private InputAction[] skills = new InputAction[3];
     
     private void Awake()
     {
@@ -21,8 +26,35 @@ public class PlayerInputManager : MonoBehaviour
         this.movementAction = this.inputSystem.FindAction("Move");
         this.dashAction = this.inputSystem.FindAction("Dash");
         this.shootAction = this.inputSystem.FindAction("Attack");
+
+        this.skills = new[]
+        {
+            this.inputSystem.FindAction("Skill 1"),
+            this.inputSystem.FindAction("Skill 2"),
+            this.inputSystem.FindAction("Skill 3")
+        };
+        
+        HookSkillInputActions();
     }
 
+    private void HookSkillInputActions()
+    {
+        for (int i = 0; i < this.skills.Length; i++)
+        {
+            int id = i;
+            InputAction action = this.skills[id];
+
+            Debug.Log(action);
+            if (action == null) continue;
+            action.performed += (callback) =>
+            {
+                if (!callback.performed) return;
+                
+                this.skillActionRequest.Invoke(id);
+            };
+        }
+    }
+    
     private void OnEnable()
     {
         if (this.inputSystem == null) this.inputSystem = new InputManager();

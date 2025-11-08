@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 1
   animator: {fileID: 9100000, guid: ae2331b6e396a294b96f30941278a197, type: 2}
   sprite: {fileID: -263833992, guid: 899c2a72906c93644b951fd2101fabed, type: 3}
+  baseHealth: 0
   baseAttack: 250
   baseDefense: 250
   basePathAttack: 100
@@ -25,6 +26,14 @@ MonoBehaviour:
   baseCritRate: 8
   dashRange: 1
   dashCooldown: 1
+  fireRate: 0
+  projectileSpeed: 0
+  baseAttackDamage: 0
+  baseFireMode: 0
   animations:
   - {fileID: 7400000, guid: b8ae3911285474645827ba02f9b7fc55, type: 2}
   - {fileID: 7400000, guid: e9319df6988b356489b5a55e0098fd26, type: 2}
+  skills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
