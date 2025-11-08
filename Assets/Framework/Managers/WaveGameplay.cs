@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class WaveGameplay : MonoBehaviour
@@ -7,6 +9,7 @@ public class WaveGameplay : MonoBehaviour
     
     public int enemieskilled = 0;
     public int enemiesrequired = 10;
+    public TMP_Text wavecounter;
     
     public UnityEvent<int> WaveChanged = new UnityEvent<int>();
 
@@ -25,11 +28,20 @@ public class WaveGameplay : MonoBehaviour
         }
     }
 
+    public void OnCursorEnter()
+    {
+        
+    }
     public void Click()
     {
         this.ui.SetActive(false);
         Time.timeScale = 1f;
     }
 
-    public void Update() => this.NewWave();
+    public void Update()
+    {
+        this.NewWave();
+        
+        wavecounter.text = ("Wave:"+ this.wave + "\n Requirements:" + this.enemieskilled + "/" + this.enemiesrequired);
+    }
 }
