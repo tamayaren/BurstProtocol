@@ -42,6 +42,6 @@ public class WaveGameplay : MonoBehaviour
     {
         this.NewWave();
         
-        wavecounter.text = ("Wave:"+ this.wave + "\n Requirements:" + this.enemieskilled + "/" + this.enemiesrequired);
+        wavecounter.text = ("Wave:"+ this.wave + "\n Requirements:\n" + this.enemieskilled + "/" + this.enemiesrequired);
     }
 }
