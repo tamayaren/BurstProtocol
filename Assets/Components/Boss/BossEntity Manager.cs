@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class BossEntityManager : MonoBehaviour
 {
+    public GameObject bossPrefab;
     public int bosshealth = 100;
     public WaveGameplay waves;
-    public float bossAtkSpd = 1f;
-    public float bossUltCD = 1f;
+    
     
     void Start()
     {
-        
+        bossPrefab.SetActive(false);
     }
 
     void Update()
     {
         if (waves.wave == 3)
         {
+            bossPrefab.SetActive(true);
             Phase1();
         }
 
