@@ -13,19 +13,28 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     [SerializeField] private Renderer renderer;
     private void BaseStatMake()
     {
-        this.entity.MaxHealth = this.currentCharacter.baseHealth;
-        this.entity.Health = this.currentCharacter.baseHealth;
+        this.entity.MaxHealth = (int)(this.currentCharacter.baseHealth + (
+            (this.currentCharacter.baseHealth) +
+            (1+(100/this.currentCharacter.statLevelGrowth[0]))
+                ));
+        this.entity.Health = this.entity.MaxHealth;
         
-        this.stats.attack = this.currentCharacter.baseAttack;
-        this.stats.defense = this.currentCharacter.baseDefense;
-        this.stats.speed = this.currentCharacter.baseSpeed;
-        this.stats.endurance = this.currentCharacter.baseEndurance;
-        
-        this.stats.critDamage = this.currentCharacter.baseCritDamage;
-        this.stats.critRate = this.currentCharacter.baseCritRate;
-
-        this.stats.pathAttack = this.currentCharacter.basePathAttack;
-        this.stats.pathDefense = this.currentCharacter.basePathDefense;
+        this.stats.FeedInitializer(new EntityStatsSchema()
+                // TODO Player Saving
+            .SetLevel(1)
+                
+            .SetAttack(this.currentCharacter.baseAttack)
+            .SetDefense(this.currentCharacter.baseDefense)
+            
+            .SetPathogenicAttack(this.currentCharacter.basePathDefense)
+            .SetPathogenicDefense(this.currentCharacter.basePathDefense)
+            
+            .SetSpeed(this.currentCharacter.baseSpeed)
+            .SetEndurance(this.currentCharacter.baseEndurance)
+            
+            .SetCritDamage(this.currentCharacter.baseCritDamage)
+            .SetCritRate(this.currentCharacter.baseCritRate)
+        , this.currentCharacter.statLevelGrowth);
     }
     
     private void Start()
