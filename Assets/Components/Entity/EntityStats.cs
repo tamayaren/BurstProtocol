@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Game.Mechanics.Organelles;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,6 +24,7 @@ public class EntityStats : MonoBehaviour
     public UnityEvent<string, float, float> CritChanged = new UnityEvent<string, float, float>();
     public UnityEvent<int, int> LevelChanged = new UnityEvent<int, int>();
 
+    private EntityStatsSchema unmodifiedStats;
     public bool initialized;
     public float dashRange = 1f;
     public float dashCooldown = 1f;
@@ -29,27 +32,51 @@ public class EntityStats : MonoBehaviour
     public void FeedInitializer(EntityStatsSchema schema, float[] statLevelGrowth)
     {
         if (!this.initialized) return;
-        
+
         this.initialized = true;
         this.level = schema.level;
 
-        this.attack = (int) (schema.attack + (2000*(statLevelGrowth[1])));
-        this.defense = (int) (schema.defense + (2000*(statLevelGrowth[2])));
-        
-        this.pathAttack = (int) (schema.pathAttack + (2000*(statLevelGrowth[3])));
-        this.pathDefense = (int) (schema.pathDefense + (2000*(statLevelGrowth[4])));
-        
-        this.speed = (int) (schema.speed + (24*(statLevelGrowth[5])));
-        this.endurance = (int) (schema.endurance + (16*(statLevelGrowth[6])));
-        
-        this.critRate = (schema.critRate + (10*(statLevelGrowth[7])));
-        this.critDamage = (schema.critDamage + (30*(statLevelGrowth[8])));
+        this.attack = (int)(schema.attack + (2000 * (statLevelGrowth[1])));
+        this.defense = (int)(schema.defense + (2000 * (statLevelGrowth[2])));
+
+        this.pathAttack = (int)(schema.pathAttack + (2000 * (statLevelGrowth[3])));
+        this.pathDefense = (int)(schema.pathDefense + (2000 * (statLevelGrowth[4])));
+
+        this.speed = (int)(schema.speed + (24 * (statLevelGrowth[5])));
+        this.endurance = (int)(schema.endurance + (16 * (statLevelGrowth[6])));
+
+        this.critRate = (schema.critRate + (10 * (statLevelGrowth[7])));
+        this.critDamage = (schema.critDamage + (30 * (statLevelGrowth[8])));
+
+        // schema for non-organelle affected and metagame stats
+        this.unmodifiedStats = new EntityStatsSchema()
+        {
+            level = this.level,
+            attack = this.attack,
+            defense = this.defense,
+
+            speed = this.speed,
+            endurance = this.endurance,
+
+            critRate = this.critRate,
+            critDamage = this.critDamage,
+
+            pathAttack = this.pathAttack,
+            pathDefense = this.pathDefense,
+        };
     }
-    
+
+    public void GetOrganelleModifiedStats(Dictionary<OrganelleType, Organelle> organelles)
+    {
+        
+    }
+
     public int level { get => this._level; set { this.LevelChanged.Invoke(this._level, value); this._level = value; } }
 
     private void _StatChanged(string statName, int oldValue, int value) => this.StatChanged.Invoke(statName,  oldValue, value);
     private void _CritChanged(string statName, float oldValue, float value) => this.CritChanged.Invoke(statName, oldValue, value);
+    
+    
     public int attack { get => this.level; set { _StatChanged("Attack", this._attack, value); this._attack = value; } }
     public int defense { get => this.level; set { _StatChanged("Defense", this._defense, value); this._defense = value; } }
     public int pathAttack { get => this.level; set { _StatChanged("PathogenicAttack", this._pathAttack, value); this._pathAttack = value; } }
@@ -59,6 +86,30 @@ public class EntityStats : MonoBehaviour
     
     public float critRate { get => this.level; set { _CritChanged("CritRate", this._critRate, value); this._critRate = value; } }
     public float critDamage { get => this.level; set { _CritChanged("CritDamage", this._critDamage, value); this._critDamage = value; } }
+
+    public float GetStatFromType(Stat stat)
+    {
+        switch (stat)
+        {
+            default:
+            case Stat.Attack:
+                return this.attack;
+            case Stat.Defence:
+                return this.defense;
+            case Stat.Endurance:
+                return this.endurance;
+            case Stat.Speed:
+                return this.speed;
+            case Stat.PathogenicAttack:
+                return this.pathAttack;
+            case Stat.PathogenicDefence:
+                return this.pathDefense;
+            case Stat.CritRate:
+                return this.critRate;
+            case Stat.CritDamage:
+                return this.critDamage;
+        }
+    }
 }
 
 

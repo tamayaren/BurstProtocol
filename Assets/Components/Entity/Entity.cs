@@ -63,9 +63,11 @@ public class Entity : MonoBehaviour
         this.transform.position = vector3;
     }
 
-    public bool AttemptDamage(float damage)
+    public bool AttemptDamage(float damage, bool? ignoreIframe)
     {
-        if (this.iFrame) return false;
+        if (!ignoreIframe.HasValue)
+            if (this.iFrame) return false;
+        
         this.Health -= (int)damage;
         
         return true;

@@ -1,24 +1,42 @@
+using System;
 using System.Collections.Generic;
+using Game.Mechanics;
+using Game.Mechanics.Organelles;
 using UnityEngine;
 using SimpleJSON;
 
-public class LocalSave : MonoBehaviour
+namespace Game.Account
 {
-    public static SaveFile cachedSave;
-
-    public string SavePref(SaveFile save)
+    public class LocalSave : MonoBehaviour
     {
-        string json = JsonUtility.ToJson(save);
-        PlayerPrefs.SetString("AccountSave", json);
+        public static LocalSave instance;
+        public static SaveFile cachedSave;
 
-        return json;
+        public void Awake() => instance = this;
+        public string SavePref(SaveFile save)
+        {
+            string json = JsonUtility.ToJson(save);
+            PlayerPrefs.SetString("AccountSave", json);
+            
+            cachedSave = save;
+            return json;
+        }
+
+        public SaveFile LoadPref()
+        {
+           SaveFile saveFile = JsonUtility.FromJson<SaveFile>(PlayerPrefs.GetString("AccountSave"));
+           
+           cachedSave = saveFile;
+           return saveFile;
+        }
     }
 
-    public SaveFile LoadPref() => JsonUtility.FromJson<SaveFile>(PlayerPrefs.GetString("AccountSave"));
-}
-
-public struct SaveFile
-{
-    public Dictionary<string, EntityStatsSchema> characterUnlocked;
-    public Organelle[] organelles;
+    public struct SaveFile
+    {
+        public string username;
+        
+        public Dictionary<string, EntityStatsSchema> characterUnlocked;
+        public Organelle[] organelles;
+        public Guid[] equippedOrganelle;
+    }
 }

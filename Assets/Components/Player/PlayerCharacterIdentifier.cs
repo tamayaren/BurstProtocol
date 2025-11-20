@@ -1,3 +1,4 @@
+using Game.Mechanics.Organelles;
 using UnityEngine;
 
 public class PlayerCharacterIdentifier : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private EntityStats stats;
     [SerializeField] private Entity entity;
+    [SerializeField] private OrganelleManager organelleManager;
 
     [SerializeField] private Renderer renderer;
     private void BaseStatMake()
