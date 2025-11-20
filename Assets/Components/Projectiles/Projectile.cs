@@ -37,12 +37,14 @@ public class Projectile : MonoBehaviour
     private void FixedUpdate()
     {
         if (!this.started) return;
+        if (!this.gameObject.activeInHierarchy) return;
         this.rb.linearVelocity = this.direction * this.speed;
     }
 
     private void Update()
     {
       if (!this.started) return;
+      if (!this.gameObject.activeInHierarchy) return;
       
       Ray ray = new Ray(this.transform.position, this.direction.normalized);
       Debug.DrawRay(ray.origin, ray.direction, Color.red);
@@ -62,7 +64,6 @@ public class Projectile : MonoBehaviour
               Debug.Log(this.wavemanager.enemieskilled);
           }
           
-          //one that removes the projectiles
           this.gameObject.SetActive(false);
       }
     }

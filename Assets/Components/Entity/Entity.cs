@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour
     [SerializeField] private int _maxHealth;
     [SerializeField] private EntityState _entityState = EntityState.Alive;
 
+    public bool iFrame = false;
+    
     public int Health
     {
         get => this._health;
@@ -59,6 +61,14 @@ public class Entity : MonoBehaviour
         Vector3 vector3 = this.transform.position;
         vector3.y = 1f;
         this.transform.position = vector3;
+    }
+
+    public bool AttemptDamage(float damage)
+    {
+        if (this.iFrame) return false;
+        this.Health -= (int)damage;
+        
+        return true;
     }
 }
 

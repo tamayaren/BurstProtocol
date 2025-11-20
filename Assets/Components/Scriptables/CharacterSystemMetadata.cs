@@ -13,6 +13,7 @@ public class CharacterSystemMetadata : ScriptableObject
 
     public int baseAttack;
     public int baseDefense;
+    
     public int basePathAttack;
     public int basePathDefense;
  
@@ -22,6 +23,8 @@ public class CharacterSystemMetadata : ScriptableObject
     public float baseCritDamage;
     public float baseCritRate;
 
+    public float[] statLevelGrowth = new float[9];
+    
     public float dashRange;
     public float dashCooldown;
 
