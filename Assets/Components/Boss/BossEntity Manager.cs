@@ -16,7 +16,6 @@ public class BossEntityManager : MonoBehaviour
     {
         if (waves.wave == 3)
         {
-            bossPrefab.SetActive(true);
             Phase1();
         }
 
@@ -28,7 +27,7 @@ public class BossEntityManager : MonoBehaviour
 
     void Phase1()
     {
-        
+        bossPrefab.SetActive(true);
     }
 
     void Phase2()
