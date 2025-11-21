@@ -2,11 +2,12 @@ using SkillSet;
 using UnityEngine;
 
 [System.Serializable]
-public class BaseSkill : SkillLogic
+public class BaseCharacterSkills : SkillLogic
 {
-    public void Start() => Initialize();
-    public override void Initialize()
+    public new void Initialize(Entity entity)
     {
+        base.Initialize(entity);
+        
         this.skillId = 0;
         this.cooldownDuration = 0;
     }

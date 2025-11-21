@@ -1,4 +1,5 @@
 using Game.Mechanics.Organelles;
+using SkillSet;
 using UnityEngine;
 
 public class PlayerCharacterIdentifier : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     [SerializeField] private EntityStats stats;
     [SerializeField] private Entity entity;
     [SerializeField] private OrganelleManager organelleManager;
+    [SerializeField] private PlayerSkills playerSkills;
 
     [SerializeField] private Renderer renderer;
     private void BaseStatMake()
@@ -40,6 +42,8 @@ public class PlayerCharacterIdentifier : MonoBehaviour
         , this.currentCharacter.statLevelGrowth);
 
         this.projectileBaseDamage = this.currentCharacter.baseAttackDamage;
+        
+        this.playerSkills.HookCharacterSkills(this);
     }
     
     private void Start()

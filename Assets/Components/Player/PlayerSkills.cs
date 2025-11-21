@@ -44,9 +44,18 @@ namespace SkillSet
                 ManageCooldown();
         }
         
-        public void HookCharacterSkills(SkillLogic[] skills) 
+        public void HookCharacterSkills(PlayerCharacterIdentifier character)
         {
+            CharacterSystemMetadata metadata = character.currentCharacter;
             
+            this.skills = new SkillLogic[metadata.skills.Length];
+            for (int i = 0; i < this.skills.Length; i++)
+            {
+                SkillLogic skillLogic = metadata.skills[i];
+                SkillLogic skillInstance = this.gameObject.AddComponent(skillLogic.GetType()) as SkillLogic;
+                
+                this.skills[i] = skillInstance;
+            }
         }
         
         private void Perform(int id)
@@ -59,10 +68,8 @@ namespace SkillSet
             if (!skill) return;
             
             bool isValid = skill.Perform(this.entity, this);
-            Debug.Log($"{id} Performed");
             if (isValid)
             {
-                Debug.Log("idValidity");
                 this.cooldownManager.Add(skill, skill.cooldownDuration);
                 skill.OnStatusChanged.AddListener((status) =>
                 {

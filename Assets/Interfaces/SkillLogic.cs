@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace SkillSet {
     public interface ISkillLogic
     {
-        public abstract void Initialize();
+        public abstract void Initialize(Entity entity);
         public abstract void Action(Entity entity);
     }
 
@@ -18,8 +18,7 @@ namespace SkillSet {
     }
     
     [System.Serializable]
-    [CreateAssetMenu(fileName = "New Skill", menuName = "Skill/Skill")]
-    public class SkillLogic: ScriptableObject, ISkillLogic
+    public class SkillLogic: MonoBehaviour, ISkillLogic
     {
         protected int skillId;
         public bool onCooldown;
@@ -27,10 +26,14 @@ namespace SkillSet {
 
         public UnityEvent<bool> OnCooldown = new UnityEvent<bool>();
         public UnityEvent<SkillStatus> OnStatusChanged = new UnityEvent<SkillStatus>();
+
+        public EntityStats stats;
+        public Entity entity;
         
-        public virtual void Initialize()
+        public virtual void Initialize(Entity entity)
         {
-            
+            this.entity = entity;
+            this.stats = entity.GetComponent<EntityStats>();
         }
 
         public bool Perform(Entity entity, MonoBehaviour runner)
@@ -42,7 +45,7 @@ namespace SkillSet {
             
             return true;
         }
-        
+
         public virtual void Action(Entity entity)
         {
             Debug.Log("Action performed!");
