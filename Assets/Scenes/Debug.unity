@@ -5533,6 +5533,7 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   _entityState: 0
+  iFrame: 0
   HealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5574,6 +5575,7 @@ MonoBehaviour:
   LevelChanged:
     m_PersistentCalls:
       m_Calls: []
+  initialized: 0
   dashRange: 1
   dashCooldown: 1
 --- !u!114 &2106145382
@@ -5594,6 +5596,7 @@ MonoBehaviour:
   characterController: {fileID: 2106145374}
   stats: {fileID: 2106145381}
   entity: {fileID: 0}
+  organelleManager: {fileID: 0}
   renderer: {fileID: 0}
 --- !u!114 &2106145383
 MonoBehaviour:
