@@ -8,11 +8,11 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject weapon;
     [SerializeField] private PlayerInputManager inputManager;
+    private PlayerCharacterIdentifier character;
     private WeaponShoot shoot;
 
     public Sprite projectileSprite;
     
-    // INTEGRATE TO CHARACTER IDENTIFIER SOON
     public bool canShoot = true;
     public float fireRate = .2f;
     public float speed = 32f;
@@ -22,6 +22,9 @@ public class PlayerShoot : MonoBehaviour
         if (this.weapon)
             this.shoot = this.weapon.GetComponent<WeaponShoot>();
 
+        this.character = GetComponent<PlayerCharacterIdentifier>();
+        this.fireRate = this.character.currentCharacter.fireRate;
+        this.speed = this.character.currentCharacter.projectileSpeed;
         this.inputManager.shootAction.performed += Shoot;
     }
 
@@ -37,7 +40,7 @@ public class PlayerShoot : MonoBehaviour
         if (!this.canShoot) return;
         
         this.shoot.Shoot(
-            this.projectileSprite, this.speed, Input.mousePosition);
+            this.projectileSprite, this.speed, Input.mousePosition, this.character.currentCharacter);
 
         StartCoroutine(Cooldown());
     }

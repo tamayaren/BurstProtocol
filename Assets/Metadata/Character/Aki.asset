@@ -24,11 +24,21 @@ MonoBehaviour:
   baseEndurance: 1
   baseCritDamage: 35
   baseCritRate: 8
+  statLevelGrowth:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   dashRange: 1
   dashCooldown: 1
   fireRate: 0
   projectileSpeed: 0
-  baseAttackDamage: 0
+  baseAttackDamage: 150
   baseFireMode: 0
   animations:
   - {fileID: 7400000, guid: b8ae3911285474645827ba02f9b7fc55, type: 2}

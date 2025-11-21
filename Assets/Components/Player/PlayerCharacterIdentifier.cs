@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerCharacterIdentifier : MonoBehaviour
 {
-    [SerializeField] private CharacterSystemMetadata currentCharacter;
+    public float projectileBaseDamage;
+    [SerializeField] public CharacterSystemMetadata currentCharacter;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
@@ -37,6 +38,8 @@ public class PlayerCharacterIdentifier : MonoBehaviour
             .SetCritDamage(this.currentCharacter.baseCritDamage)
             .SetCritRate(this.currentCharacter.baseCritRate)
         , this.currentCharacter.statLevelGrowth);
+
+        this.projectileBaseDamage = this.currentCharacter.baseAttackDamage;
     }
     
     private void Start()

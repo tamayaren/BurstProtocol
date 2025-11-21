@@ -7,6 +7,7 @@ public class EnemyBaseAI : MonoBehaviour
     private Entity entity;
     private NavMeshAgent agent;
     private Transform target;
+    private WaveGameplay gameplay;
 
     private float dynamicPollingRate = .25f;
     private float pollingTime = 0f;
@@ -14,8 +15,17 @@ public class EnemyBaseAI : MonoBehaviour
     {
         this.entity = GetComponent<Entity>();
         this.agent = GetComponent<NavMeshAgent>();
+        this.gameplay = GameObject.FindObjectOfType<WaveGameplay>();
         
         this.agent.updateRotation = false;
+        this.entity.EntityStateChanged.AddListener(state =>
+        {
+            if (state == EntityState.Dead)
+            {
+                this.gameObject.SetActive(false);
+                this.gameplay.enemieskilled++;
+            }
+        });
     }
 
     private Transform FindTarget()

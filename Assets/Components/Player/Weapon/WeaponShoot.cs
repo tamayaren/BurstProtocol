@@ -25,7 +25,7 @@ public class WeaponShoot : MonoBehaviour
         }
     }
     
-    public void Shoot(Sprite sprite, float speed, Vector3 target)
+    public void Shoot(Sprite sprite, float speed, Vector3 target, CharacterSystemMetadata character)
     {
         Ray ray = Camera.main.ScreenPointToRay(target);
         Plane plane = new Plane(Vector3.up, new  Vector3(0, this.transform.position.y, 0));
@@ -43,8 +43,6 @@ public class WeaponShoot : MonoBehaviour
 
         GameObject proj = this.projectiles.Find(obj => !obj.activeInHierarchy);
         
-        //GameObject proj = Instantiate(this.bullet, this.transform.position, Quaternion.identity, this.projectile.transform);
-
         if (proj != null)
         {
             proj.transform.position = owner.transform.position;
@@ -52,11 +50,10 @@ public class WeaponShoot : MonoBehaviour
             Debug.Log("shooting");
         }
         
-        Debug.Log("init");
         SpriteRenderer spriteRenderer = proj.GetComponent<SpriteRenderer>();
         Projectile initializer = proj.GetComponent<Projectile>();
         
         spriteRenderer.sprite = sprite;
-        initializer.Initialize(this.owner, speed, dir);
+        initializer.Initialize(this.owner, speed, dir, character.baseAttackDamage);
     }
 }

@@ -16,6 +16,8 @@ public class Entity : MonoBehaviour
         set
         {
             this._health = value;
+            if (this._health <= 0f)
+                this.EntityState = EntityState.Dead;
             
             this.HealthChanged.Invoke(this._health);
         }
@@ -46,6 +48,7 @@ public class Entity : MonoBehaviour
     public UnityEvent<int> HealthChanged = new UnityEvent<int>();
     public UnityEvent<int> MaxHealthChanged = new UnityEvent<int>();
     public UnityEvent<EntityState> EntityStateChanged = new UnityEvent<EntityState>();
+    public UnityEvent<int> DamageInflicted = new UnityEvent<int>();
 
     private void Start()
     {
@@ -69,6 +72,7 @@ public class Entity : MonoBehaviour
             if (this.iFrame) return false;
         
         this.Health -= (int)damage;
+        Debug.Log("Damage inflicted");
         
         return true;
     }
