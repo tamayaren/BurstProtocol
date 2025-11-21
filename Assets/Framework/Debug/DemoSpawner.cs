@@ -24,7 +24,7 @@ public class DemoSpawner : MonoBehaviour
     private void Start()
     {
         this.spawns = new List<GameObject>();
-        
+         
         this.toInf = Random.Range(this.spawnInterval.x, this.spawnInterval.y);
         
         this.target = GameObject.FindGameObjectWithTag("Player");

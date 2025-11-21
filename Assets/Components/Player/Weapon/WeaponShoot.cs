@@ -4,10 +4,10 @@ using UnityEngine;
 public class WeaponShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
+    private readonly int projectileAmount = 100;
     
     private List<GameObject> projectiles;
     private GameObject projectileParent;
-    private int projectileamount = 3;
     private GameObject projectileHolder; 
     public Entity owner;
     
@@ -17,7 +17,7 @@ public class WeaponShoot : MonoBehaviour
         
         this.projectiles = new List<GameObject>();
         
-        for (int i = 0; i < this.projectileamount; i++)
+        for (int i = 0; i < this.projectileAmount; i++)
         {
             GameObject projectileHolder = Instantiate(this.bullet,this.transform.position,Quaternion.identity, this.projectileParent.transform);
             projectileHolder.SetActive(false);

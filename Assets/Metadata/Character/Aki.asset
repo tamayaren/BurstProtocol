@@ -37,7 +37,7 @@ MonoBehaviour:
   dashRange: 1
   dashCooldown: 1
   fireRate: 0
-  projectileSpeed: 0
+  projectileSpeed: 25
   baseAttackDamage: 150
   baseFireMode: 0
   animations:

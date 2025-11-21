@@ -11,23 +11,29 @@ public class EnemyBaseAI : MonoBehaviour
 
     private float dynamicPollingRate = .25f;
     private float pollingTime = 0f;
+    private bool enemyVoided = false;
     private void Start()
     {
         this.entity = GetComponent<Entity>();
         this.agent = GetComponent<NavMeshAgent>();
         this.gameplay = GameObject.FindObjectOfType<WaveGameplay>();
-        
+
         this.agent.updateRotation = false;
         this.entity.EntityStateChanged.AddListener(state =>
         {
-            if (state == EntityState.Dead)
+            if (state == EntityState.Dead && !this.enemyVoided)
             {
-                this.gameObject.SetActive(false);
+                this.enemyVoided = true;
                 this.gameplay.enemieskilled++;
+                this.gameObject.SetActive(false);
             }
         });
     }
 
+    public void Reinitialize()
+    {
+        this.enemyVoided = false;
+    }
     private Transform FindTarget()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

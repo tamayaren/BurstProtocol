@@ -14,6 +14,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     [SerializeField] private Entity entity;
     [SerializeField] private OrganelleManager organelleManager;
     [SerializeField] private PlayerSkills playerSkills;
+    [SerializeField] private PlayerMovement playerMovement;
 
     [SerializeField] private Renderer renderer;
     private void BaseStatMake()
@@ -42,14 +43,16 @@ public class PlayerCharacterIdentifier : MonoBehaviour
         , this.currentCharacter.statLevelGrowth);
 
         this.projectileBaseDamage = this.currentCharacter.baseAttackDamage;
-        
+
+        this.playerMovement.dashTime = this.currentCharacter.dashRange;
         this.playerSkills.HookCharacterSkills(this);
     }
     
     private void Start()
     {
         this.animator.runtimeAnimatorController = this.currentCharacter.animator;
-
+    
+        this.playerMovement = GetComponent<PlayerMovement>();
         this.characterController = GetComponent<CharacterController>();
         this.entity = GetComponent<Entity>();
         this.renderer = this.animator.gameObject.GetComponent<Renderer>();

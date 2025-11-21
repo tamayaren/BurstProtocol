@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         this.isDashing = true;
         this.canMove = false;
         this.canDash = false;
-        this.dashTime = 0.5f;
         this.entity.EntityState = EntityState.Invincible;
         if (this.animator)
             this.animator.Play("Dash");
