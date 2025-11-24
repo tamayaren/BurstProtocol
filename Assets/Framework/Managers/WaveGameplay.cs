@@ -9,7 +9,7 @@ public class WaveGameplay : MonoBehaviour
     
     public int enemieskilled = 0;
     public int enemiesrequired = 10;
-    public TMP_Text current,maximum;
+    public TMP_Text counter;
     
     public UnityEvent<int> WaveChanged = new UnityEvent<int>();
 
@@ -41,7 +41,7 @@ public class WaveGameplay : MonoBehaviour
     public void Update()
     {
         this.NewWave();
-        current.text = enemieskilled.ToString();
-        maximum.text = enemiesrequired.ToString();
+        counter.text = enemieskilled + "/"+ enemiesrequired.ToString();
+        
     }
 }
