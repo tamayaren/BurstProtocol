@@ -48,7 +48,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
         this.playerSkills.HookCharacterSkills(this);
     }
     
-    private void Start()
+    private void Awake()
     {
         this.animator.runtimeAnimatorController = this.currentCharacter.animator;
     

@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         this.dashSpeed = startComputedSpeed.Item1;
         
         this.animator = this.transform.Find("Texture")?.GetComponent<Animator>();
+        
+        HookCharacter();
     }
 
     private IEnumerator DashAction()

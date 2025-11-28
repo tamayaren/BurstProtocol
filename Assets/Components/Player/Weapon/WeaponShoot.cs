@@ -31,7 +31,6 @@ public class WeaponShoot : MonoBehaviour
         Plane plane = new Plane(Vector3.up, new  Vector3(0, this.transform.position.y, 0));
         
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
-        Debug.Log("out1");
         if (!plane.Raycast(ray, out float enter)) return;
         Vector3 hitPoint = ray.GetPoint(enter);
 
@@ -47,7 +46,6 @@ public class WeaponShoot : MonoBehaviour
         {
             proj.transform.position = owner.transform.position;
             proj.SetActive(true);
-            Debug.Log("shooting");
         }
         
         SpriteRenderer spriteRenderer = proj.GetComponent<SpriteRenderer>();

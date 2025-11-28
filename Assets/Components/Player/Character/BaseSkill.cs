@@ -1,23 +1,27 @@
 using SkillSet;
 using UnityEngine;
 
-[System.Serializable]
-public class BaseCharacterSkills : SkillLogic
-{
-    public new void Initialize(Entity entity)
-    {
-        base.Initialize(entity);
-        
-        this.skillId = 0;
-        this.cooldownDuration = 0;
-    }
 
-    public override void Action(Entity entity)
+namespace SkillSet.Base
+{
+    [System.Serializable]
+    public class BaseSkill : SkillLogic
     {
-        base.Action(entity);
-        //
-        
-        Debug.Log("Action PERFORMED!");
-        this.OnStatusChanged.Invoke(SkillStatus.Ended);
+        public new void Initialize(Entity entity)
+        {
+            base.Initialize(entity);
+            
+            this.skillId = 0;
+            this.cooldownDuration = 0;
+        }
+
+        public override void Action(Entity entity, MonoBehaviour runner)
+        {
+            base.Action(entity, runner);
+            //
+            
+            Debug.Log("Action PERFORMED!");
+            this.OnStatusChanged.Invoke(SkillStatus.Ended);
+        }
     }
 }

@@ -66,6 +66,12 @@ public class Entity : MonoBehaviour
         this.transform.position = vector3;
     }
 
+    private void OnEnable()
+    {
+        this.EntityState = EntityState.Alive;
+        this.Health = this.MaxHealth;
+    }
+
     public bool AttemptDamage(float damage, bool? ignoreIframe)
     {
         if (!ignoreIframe.HasValue)

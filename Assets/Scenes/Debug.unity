@@ -2257,31 +2257,6 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!1 &1609166515 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7453738372130969789, guid: 98b2377586fe645f3853cac5412c2e04, type: 3}
-  m_PrefabInstance: {fileID: 1962211444}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1609166517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609166515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedVersion: 0
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 0
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &1628711660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,9 +3014,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2616454121137875084, guid: 98b2377586fe645f3853cac5412c2e04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1576612544}
-    - targetCorrespondingSourceObject: {fileID: 7453738372130969789, guid: 98b2377586fe645f3853cac5412c2e04, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1609166517}
     - targetCorrespondingSourceObject: {fileID: 6608286522061813317, guid: 98b2377586fe645f3853cac5412c2e04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1254816233}
@@ -3227,7 +3199,6 @@ GameObject:
   - component: {fileID: 2106145381}
   - component: {fileID: 2106145382}
   - component: {fileID: 2106145383}
-  - component: {fileID: 2106145384}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3414,25 +3385,6 @@ MonoBehaviour:
   canShoot: 1
   fireRate: 0.2
   speed: 32
---- !u!114 &2106145384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106145373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8370ae2b755474bce86dc972a0f2837a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputManager: {fileID: 2026186827}
-  entity: {fileID: 2106145380}
-  canSkill: 1
-  skills:
-  - {fileID: 11400000, guid: 1cb1671196fb74feba7e013ed3d4c490, type: 2}
-  - {fileID: 11400000, guid: 1cb1671196fb74feba7e013ed3d4c490, type: 2}
-  - {fileID: 11400000, guid: 1cb1671196fb74feba7e013ed3d4c490, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

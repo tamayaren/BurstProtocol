@@ -46,10 +46,12 @@ public class PlayerInputManager : MonoBehaviour
 
             Debug.Log(action);
             if (action == null) continue;
+            Debug.Log(action.name);
             action.performed += (callback) =>
             {
                 if (!callback.performed) return;
                 
+                Debug.Log("Input Red");
                 this.skillActionRequest.Invoke(id);
             };
         }

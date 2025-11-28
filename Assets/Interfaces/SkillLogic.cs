@@ -1,14 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace SkillSet {
-    public interface ISkillLogic
-    {
-        public abstract void Initialize(Entity entity);
-        public abstract void Action(Entity entity);
-    }
-
     public enum SkillStatus
     {
         Started,
@@ -18,17 +13,21 @@ namespace SkillSet {
     }
     
     [System.Serializable]
-    public class SkillLogic: MonoBehaviour, ISkillLogic
+    public abstract class SkillLogic
     {
         protected int skillId;
         public bool onCooldown;
-        public int cooldownDuration { get; set; }
 
-        public UnityEvent<bool> OnCooldown = new UnityEvent<bool>();
-        public UnityEvent<SkillStatus> OnStatusChanged = new UnityEvent<SkillStatus>();
+        [SerializeField] protected float cooldown;
+        public float cooldownDuration { get => this.cooldown; set => this.cooldown = value; }
+
+        [NonSerialized] public Action<bool> OnCooldown;
+        [NonSerialized] public Action<SkillStatus> OnStatusChanged;
 
         public EntityStats stats;
         public Entity entity;
+
+        public string skillName;
         
         public virtual void Initialize(Entity entity)
         {
@@ -46,10 +45,16 @@ namespace SkillSet {
             return true;
         }
 
-        public virtual void Action(Entity entity)
+
+        public virtual bool Update(Entity entity, MonoBehaviour runner)
+        {
+            return false;
+        }
+        public virtual void Action(Entity entity, MonoBehaviour runner)
         {
             Debug.Log("Action performed!");
             this.OnStatusChanged.Invoke(SkillStatus.Performing);
         }
+
     }
 }
