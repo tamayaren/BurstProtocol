@@ -21,7 +21,7 @@ public class WeaponShoot : MonoBehaviour
         {
             GameObject projectileHolder = Instantiate(this.bullet,this.transform.position,Quaternion.identity, this.projectileParent.transform);
             projectileHolder.SetActive(false);
-            projectiles.Add(projectileHolder);
+            this.projectiles.Add(projectileHolder);
         }
     }
     
@@ -44,7 +44,7 @@ public class WeaponShoot : MonoBehaviour
         
         if (proj != null)
         {
-            proj.transform.position = owner.transform.position;
+            proj.transform.position = this.owner.transform.position;
             proj.SetActive(true);
         }
         

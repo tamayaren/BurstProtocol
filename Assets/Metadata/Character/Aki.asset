@@ -20,8 +20,8 @@ MonoBehaviour:
   baseDefense: 250
   basePathAttack: 100
   basePathDefense: 100
-  baseSpeed: 8
-  baseEndurance: 1
+  baseSpeed: 24
+  baseEndurance: 2
   baseCritDamage: 35
   baseCritRate: 8
   statLevelGrowth:
@@ -43,12 +43,7 @@ MonoBehaviour:
   animations:
   - {fileID: 7400000, guid: b8ae3911285474645827ba02f9b7fc55, type: 2}
   - {fileID: 7400000, guid: e9319df6988b356489b5a55e0098fd26, type: 2}
-  skills:
-  - rid: -2
-  - rid: -2
-  - rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  skillClasses:
+  - AkiSkill1
+  - AkiSkill1
+  - AkiSkill1

@@ -9,17 +9,17 @@ public class BossEntityManager : MonoBehaviour
     
     void Start()
     {
-        bossPrefab.SetActive(false);
+        this.bossPrefab.SetActive(false);
     }
 
     void Update()
     {
-        if (waves.wave == 3)
+        if (this.waves.wave == 3)
         {
             Phase1();
         }
 
-        if (bosshealth < 50)
+        if (this.bosshealth < 50)
         {
             Phase2();
         }
@@ -27,7 +27,7 @@ public class BossEntityManager : MonoBehaviour
 
     void Phase1()
     {
-        bossPrefab.SetActive(true);
+        this.bossPrefab.SetActive(true);
     }
 
     void Phase2()

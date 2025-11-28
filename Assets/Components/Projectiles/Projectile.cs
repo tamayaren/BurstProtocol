@@ -65,6 +65,8 @@ public class Projectile : MonoBehaviour
                   this.baseDamage, 
                   DamageType.Physical, this.entityStats, 
                   entity.GetComponent<EntityStats>()));
+              
+              DamageTextManager.instance.GenerateText(hit.point, damage);
               entity.AttemptDamage(damage, false);
           }
           

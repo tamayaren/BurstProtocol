@@ -6,7 +6,7 @@ namespace Game.Mechanics
     {
         private static float dashDuration = .125f;
         private static float dashSpeed = 32f;
-        public static float CalculateSpeed(float baseSpeed, EntityStats stats) => baseSpeed * (stats.speed * .25f + ((float)stats.endurance/64f));
+        public static float CalculateSpeed(float baseSpeed, EntityStats stats) => baseSpeed * (stats.speed * .8f + ((float)stats.endurance/64f));
         public static float CalculateDashCooldown(float baseDashCooldown, EntityStats stats) => 3f;
 
         public static (float, float) CalculateDash(EntityStats stats)

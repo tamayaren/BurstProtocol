@@ -34,7 +34,7 @@ public class CharacterSystemMetadata : ScriptableObject
     public FireMode baseFireMode;
 
     public AnimationClip[] animations;
-    [SerializeReference] public SkillLogic[] skills;
+    [SerializeReference] public string[] skillClasses;
 }
 
 public enum FireMode

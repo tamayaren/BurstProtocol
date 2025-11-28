@@ -48,10 +48,14 @@ public class DemoSpawner : MonoBehaviour
 
                 if (objToSpawn != null)
                 {
-                    Vector3 spawnPos = target.transform.position + Random.insideUnitSphere * range;
+                    Vector2 dir2D = Random.insideUnitCircle.normalized;
+                    float objOffsetDist = Random.Range(8f, 16f);
+                    
+                    Vector3 spawnPos = this.target.transform.position + (new Vector3(dir2D.x, 0f, dir2D.y)) * objOffsetDist;
                     spawnPos.y = 0;
                     objToSpawn.transform.position = spawnPos;
                     objToSpawn.SetActive(true);
+                    objToSpawn.GetComponent<Entity>().EntityState = EntityState.Alive;
                 }
             }
             

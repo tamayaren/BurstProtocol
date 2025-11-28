@@ -39,9 +39,7 @@ namespace SkillSet {
         {
             if (this.onCooldown) return false;
             
-            this.OnStatusChanged.Invoke(SkillStatus.Started);
             Debug.Log("Perform action");
-            
             return true;
         }
 
@@ -53,7 +51,6 @@ namespace SkillSet {
         public virtual void Action(Entity entity, MonoBehaviour runner)
         {
             Debug.Log("Action performed!");
-            this.OnStatusChanged.Invoke(SkillStatus.Performing);
         }
 
     }

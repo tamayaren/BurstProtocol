@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
   
     void Start()
     {
-        cleanse.onClick.AddListener(delegate { SceneManager.LoadScene(0); });
+        this.cleanse.onClick.AddListener(delegate { SceneManager.LoadScene(0); });
     }
     
     void Update()
