@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +9,8 @@ public class Entity : MonoBehaviour
     [SerializeField] private int _maxHealth;
     [SerializeField] private EntityState _entityState = EntityState.Alive;
 
+    private GameObject hitprefab;
+    private SpriteRenderer texture;
     public bool iFrame = false;
     
     public int Health
@@ -52,6 +55,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
+        this.texture = this.transform.Find("Texture")?.GetComponent<SpriteRenderer>();
         this.HealthChanged.AddListener(health =>
         {
             if (health <= 0)
@@ -76,10 +80,14 @@ public class Entity : MonoBehaviour
     {
         if (!ignoreIframe.HasValue)
             if (this.iFrame) return false;
+
+        this.texture.color = Color.red;
+        this.texture.DOColor(Color.white, .2f);
         
         this.Health -= (int)damage;
         Debug.Log("Damage inflicted");
         
+        DamageTextManager.instance.GenerateText(this.transform.position, damage);
         return true;
     }
 }

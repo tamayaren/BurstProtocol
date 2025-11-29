@@ -121,7 +121,8 @@ namespace SkillSet
             bool isValid = skill.Perform(this.entity, this);
             if (isValid && !skill.onCooldown)
             {
-                this.cooldownQueue.Add(skill, skill.cooldownDuration);
+                if (!this.cooldownQueue.ContainsKey(skill))
+                    this.cooldownQueue.Add(skill, skill.cooldownDuration);
                 this.CurrentSkillPerforming = skill;
                 
                 this.canSkill = false;

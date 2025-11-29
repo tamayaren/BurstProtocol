@@ -20,8 +20,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
     private void BaseStatMake()
     {
         this.entity.MaxHealth = (int)(this.currentCharacter.baseHealth + (
-            (this.currentCharacter.baseHealth) +
-            (1+(100/this.currentCharacter.statLevelGrowth[0]))
+            (this.currentCharacter.baseHealth)
                 ));
         this.entity.Health = this.entity.MaxHealth;
         

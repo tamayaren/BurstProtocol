@@ -55,6 +55,8 @@ public class DemoSpawner : MonoBehaviour
                     spawnPos.y = 0;
                     objToSpawn.transform.position = spawnPos;
                     objToSpawn.SetActive(true);
+                    
+                    objToSpawn.GetComponent<EnemyBaseAI>().Reinitialize();
                     objToSpawn.GetComponent<Entity>().EntityState = EntityState.Alive;
                 }
             }

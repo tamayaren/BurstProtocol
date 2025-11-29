@@ -28,4 +28,6 @@ public class SpriteRendering : MonoBehaviour
             }
         }
     }
+    
+    private void Update() => UpdateSprites(Camera.main.transform.rotation);
 }

@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     private bool started = false;
     private Vector3 direction;
     private float baseDamage;
+    [SerializeField] private GameObject hitprefab;
 
     private void Start()
     {
@@ -66,9 +67,13 @@ public class Projectile : MonoBehaviour
                   DamageType.Physical, this.entityStats, 
                   entity.GetComponent<EntityStats>()));
               
-              DamageTextManager.instance.GenerateText(hit.point, damage);
               entity.AttemptDamage(damage, false);
+              
+              GameObject explosion = Instantiate(this.hitprefab, this.transform.position, Quaternion.identity);
+              ParticleSystem particle = explosion.GetComponentInChildren<ParticleSystem>();
+              particle.Play();
           }
+              
           
           this.gameObject.SetActive(false);
       }

@@ -708,6 +708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311988477}
+  - component: {fileID: 311988478}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -731,6 +732,19 @@ Transform:
   - {fileID: 785906213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311988478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311988476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa03b893dfa4d724b934ff4470bc4b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 354892150839656194, guid: 1fc6a99292149b7499b7cfa9a911563f, type: 3}
 --- !u!1 &316845789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1148,7 @@ GameObject:
   - component: {fileID: 543969505}
   - component: {fileID: 543969508}
   - component: {fileID: 543969507}
-  - component: {fileID: 543969506}
+  - component: {fileID: 543969509}
   m_Layer: 5
   m_Name: CardDeck
   m_TagString: Untagged
@@ -1164,32 +1178,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &543969506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543969504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 24
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &543969507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,6 +1216,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543969504}
   m_CullTransparentMesh: 1
+--- !u!114 &543969509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543969504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 12
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &585310609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,8 +1447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 776, y: -540}
-  m_SizeDelta: {x: 160, y: 256}
+  m_AnchoredPosition: {x: 960, y: -432}
+  m_SizeDelta: {x: 1500, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &826757343
 MonoBehaviour:
@@ -1751,7 +1765,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -540}
-  m_SizeDelta: {x: 160, y: 256}
+  m_SizeDelta: {x: 1500, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1379740450
 MonoBehaviour:
@@ -1916,7 +1930,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card
+  m_text: 'Antibodies
+
+    Random stat increase by 2 (for flat values) and 0.5% (for
+    percentage values) for the current session.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a23c3da296fa843a28fdb9ba1560ea14, type: 2}
   m_sharedMaterial: {fileID: 2044138907233148614, guid: a23c3da296fa843a28fdb9ba1560ea14, type: 2}
@@ -2246,6 +2263,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1682495367184171882, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -57.599976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682495367184171882, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 3814639668664625349, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2357,8 +2382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1144, y: -540}
-  m_SizeDelta: {x: 160, y: 256}
+  m_AnchoredPosition: {x: 960, y: -648}
+  m_SizeDelta: {x: 1500, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1628711662
 MonoBehaviour:
@@ -2726,7 +2751,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card
+  m_text: 'Hyperactive
+
+    When damaged, the character speeds up and has increased
+    Speed stat of 30 for 1 seconds. Cooldown 16 seconds'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a23c3da296fa843a28fdb9ba1560ea14, type: 2}
   m_sharedMaterial: {fileID: 2044138907233148614, guid: a23c3da296fa843a28fdb9ba1560ea14, type: 2}
@@ -2893,7 +2921,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card
+  m_text: 'Minute Man
+
+    First attack after 10 seconds is nullified, and has a
+    cooldown of 60 seconds. (max stack 4)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a23c3da296fa843a28fdb9ba1560ea14, type: 2}
   m_sharedMaterial: {fileID: 2044138907233148614, guid: a23c3da296fa843a28fdb9ba1560ea14, type: 2}

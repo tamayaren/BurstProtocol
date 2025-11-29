@@ -12,6 +12,9 @@ public class EnemyBaseAI : MonoBehaviour
     private float dynamicPollingRate = .25f;
     private float pollingTime = 0f;
     private bool enemyVoided = false;
+
+    private bool canDamageAgain = true;
+    private float tTick = 0f;
     private void Start()
     {
         this.entity = GetComponent<Entity>();
@@ -53,6 +56,24 @@ public class EnemyBaseAI : MonoBehaviour
         if (this.target && this.entity.EntityState == EntityState.Alive)
         {
             this.agent.SetDestination(this.target.position);
+
+            if (this.agent.remainingDistance <= this.agent.stoppingDistance && this.canDamageAgain)
+            {
+                Entity playerEntity = this.target.GetComponent<Entity>();
+
+                playerEntity.AttemptDamage(1f, false);
+                this.canDamageAgain = false;
+            }
+        }
+
+        if (!this.canDamageAgain)
+        {
+            this.tTick += Time.deltaTime;
+            if (this.tTick >= this.dynamicPollingRate)
+            {
+                this.tTick = 0;
+                this.canDamageAgain = true;
+            }
         }
         
         this.pollingTime += Time.deltaTime;
