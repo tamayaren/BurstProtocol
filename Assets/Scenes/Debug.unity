@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1686780453}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaveGameplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
@@ -1839,7 +1839,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1686780453}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaveGameplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
@@ -3213,7 +3213,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1686780453}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaveGameplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
@@ -3284,8 +3284,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1686780452}
-  - component: {fileID: 1686780453}
-  - component: {fileID: 1686780454}
   - component: {fileID: 1686780455}
   m_Layer: 0
   m_Name: Managers
@@ -3309,42 +3307,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1686780453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686780451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ebb96a9e4554998b7b3133d4029001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wave: 1
-  enemieskilled: 0
-  enemiesrequired: 10
-  counter: {fileID: 0}
-  WaveChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  ui: {fileID: 543969504}
---- !u!114 &1686780454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686780451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ac3c1a7ad6b5a498c32c24ba0550b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawns: []
-  spawn: {fileID: 7801577578134624177, guid: d802ee74bed688d4d911b22cc0aed199, type: 3}
-  target: {fileID: 0}
-  enemyParent: {fileID: 1854813628}
 --- !u!114 &1686780455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3478,7 +3440,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828109722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6ac3c1a7ad6b5a498c32c24ba0550b2, type: 3}
   m_Name: 

@@ -26,6 +26,11 @@ public class PlayerStart : MonoBehaviour
         GameplayManager.instance.StartGame();
     }
 
+    private void Awake()
+    {
+        this.baseUI.gameObject.SetActive(false);
+    }
+
     private void Start()
     {
         StartCoroutine(StartScene());

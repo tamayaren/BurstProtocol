@@ -27,11 +27,10 @@ namespace SkillSet
         {
             if (this.cooldownQueue.Count > 0)
             {
-                foreach (KeyValuePair<SkillLogic, float> kvp in this.cooldownQueue.Where(kvp =>
-                             !this.cooldownManager.ContainsKey(kvp.Key)))
+                foreach (KeyValuePair<SkillLogic, float> kvp in this.cooldownQueue)
                 {
                     kvp.Key.onCooldown = true;
-                    this.cooldownManager.Add(kvp.Key, kvp.Value);
+                    this.cooldownManager.TryAdd(kvp.Key, kvp.Value);
                 }
 
 
@@ -42,14 +41,16 @@ namespace SkillSet
             {
                 SkillLogic skillLogic = skill.Key;
                 float timer = skill.Value;
-
+                
+                Debug.Log("CheckingTimer " + skill.Value);
                 skillLogic.onCooldown = true;
                 if (skill.Key == null || timer <= 0)
                 {
                     this.cooldownManager.Remove(skillLogic);
 
                     skillLogic.onCooldown = false;
-                    continue;
+                    Debug.Log("CanPerformNow");
+                    break;
                 }
                 
                 this.cooldownManager[skillLogic] -= Time.deltaTime;
@@ -78,6 +79,7 @@ namespace SkillSet
                 {
                     SkillLogic skillLogic = (SkillLogic)Activator.CreateInstance(type);
                     this.skills[i] = skillLogic;
+                    skillLogic.Initialize(this.entity);
                     skillLogic.OnCooldown = b =>
                     {
                         
@@ -121,12 +123,15 @@ namespace SkillSet
             bool isValid = skill.Perform(this.entity, this);
             if (isValid && !skill.onCooldown)
             {
+                float cooldown = skill.Action(this.entity, this);
                 if (!this.cooldownQueue.ContainsKey(skill))
-                    this.cooldownQueue.Add(skill, skill.cooldownDuration);
+                {
+                    this.cooldownQueue.TryAdd(skill, cooldown);
+                    SkillDisplay.instance.Cooldown(id, cooldown);
+                }
                 this.CurrentSkillPerforming = skill;
                 
                 this.canSkill = false;
-                skill.Action(this.entity, this);
             }
         }
     }

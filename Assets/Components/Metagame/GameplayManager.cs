@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,6 +21,11 @@ public class GameplayManager : MonoBehaviour
     public UnityEvent<int, int> ComboChanged = new UnityEvent<int, int>();
     public float timeElapsed;
     public float timeElapsedTimer = 5f;
+
+    private void Start()
+    {
+        DOTween.SetTweensCapacity(500, 100);
+    }
     private void Update()
     {
         if (this.gameSession == GameSession.Paused) return;

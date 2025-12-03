@@ -91,7 +91,6 @@ public class Entity : MonoBehaviour
         this.texture.DOColor(Color.white, .2f);
         
         this.Health -= (int)damage;
-        Debug.Log("Damage inflicted");
         
         this.DamageInflicted.Invoke((int)damage);
         DamageTextManager.instance.GenerateText(this.transform.position, damage, isEnemy);

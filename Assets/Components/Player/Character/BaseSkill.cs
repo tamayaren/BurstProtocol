@@ -15,13 +15,14 @@ namespace SkillSet.Base
             this.cooldownDuration = 0;
         }
 
-        public override void Action(Entity entity, MonoBehaviour runner)
+        public override float Action(Entity entity, MonoBehaviour runner)
         {
             base.Action(entity, runner);
             //
             
             Debug.Log("Action PERFORMED!");
             this.OnStatusChanged.Invoke(SkillStatus.Ended);
+            return this.cooldownDuration;
         }
     }
 }

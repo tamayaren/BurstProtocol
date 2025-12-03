@@ -18,7 +18,7 @@ namespace SkillSet {
         protected int skillId;
         public bool onCooldown;
 
-        [SerializeField] protected float cooldown;
+        [SerializeField] private float cooldown;
         public float cooldownDuration { get => this.cooldown; set => this.cooldown = value; }
 
         [NonSerialized] public Action<bool> OnCooldown;
@@ -43,14 +43,17 @@ namespace SkillSet {
             return true;
         }
 
+        public void CanPerformNow() => this.onCooldown = false;
+
 
         public virtual bool Update(Entity entity, MonoBehaviour runner)
         {
             return false;
         }
-        public virtual void Action(Entity entity, MonoBehaviour runner)
+        public virtual float Action(Entity entity, MonoBehaviour runner)
         {
             Debug.Log("Action performed!");
+            return this.cooldownDuration;
         }
 
     }

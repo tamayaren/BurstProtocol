@@ -24,10 +24,12 @@ public class EntityStats : MonoBehaviour
     public UnityEvent<string, float, float> CritChanged = new UnityEvent<string, float, float>();
     public UnityEvent<int, int> LevelChanged = new UnityEvent<int, int>();
 
-    private EntityStatsSchema unmodifiedStats;
+    private EntityStatsSchema modifiedStats;
     public bool initialized;
     public float dashRange = 1f;
     public float dashCooldown = 1f;
+
+    private float[] statLevelGrowth;
 
     public void Feed(EntityStatsSchema schema, float[] statLevelGrowth)
     {
@@ -47,30 +49,24 @@ public class EntityStats : MonoBehaviour
         this.critDamage = (schema.critDamage + (30 * (statLevelGrowth[8])));
 
         // schema for non-organelle affected and metagame stats
-        this.unmodifiedStats = new EntityStatsSchema()
-        {
-            level = this.level,
-            attack = this.attack,
-            defense = this.defense,
-
-            speed = this.speed,
-            endurance = this.endurance,
-
-            critRate = this.critRate,
-            critDamage = this.critDamage,
-
-            pathAttack = this.pathAttack,
-            pathDefense = this.pathDefense,
-        };
+        
+        this.statLevelGrowth = statLevelGrowth;
+        this.modifiedStats = schema;
     }
 
     public void LevelUp()
     {
         this.level++;
-        this.unmodifiedStats.level = this.level;
+        this.modifiedStats.level = this.level;
         
-        
-        this.attack += (2000);
+        this.attack += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);
+        this.defense += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);
+        this.pathAttack += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);
+        this.pathDefense += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);
+        this.speed += (int)Mathf.Pow(24 * (this.statLevelGrowth[1]), this.level/80f);
+        this.endurance += (int)Mathf.Pow(16 * (this.statLevelGrowth[1]), this.level/80f);
+        this.critRate += (int)Mathf.Pow(10 * (this.statLevelGrowth[1]), this.level/80f);
+        this.critDamage += (int)Mathf.Pow(30 * (this.statLevelGrowth[1]), this.level/80f);
     }
 
     public int level { get => this._level; set { this.LevelChanged.Invoke(this._level, value); this._level = value; } }
