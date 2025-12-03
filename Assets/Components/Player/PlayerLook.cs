@@ -18,6 +18,8 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
+        
         Vector2 lookVector = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - (new Vector2(Screen.width * .5f, Screen.height * .5f));
         this.look = lookVector / new Vector2(Screen.width, Screen.height);
 

@@ -9,6 +9,7 @@ public class EnemyBaseAnimation : MonoBehaviour
     
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         this.transform.localPosition = Vector3.Lerp(
             Vector3.zero,
             new Vector3(

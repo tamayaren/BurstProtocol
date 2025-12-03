@@ -71,8 +71,14 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused)
+        {
+            this.inputSystem.Disable();
+            return;
+        };
         if (this.inputSystem == null) return;
         
+        this.inputSystem.Enable();
         this.movementInput = this.movementAction.ReadValue<Vector2>();
     }
 }

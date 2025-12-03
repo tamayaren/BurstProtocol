@@ -6,21 +6,21 @@ using UnityEngine;
 public class DamageTextRenderer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
-
-    private IEnumerator SelfDestroy()
-    {
-        yield return new WaitForSeconds(3f);
-        Destroy(this.gameObject);
-    }
     
-    public void Generate(float text)
+    public void Generate(float text, bool isEnemy)
     {
         this.text.text = text.ToString();
-
-        this.text.transform.DOScale(Vector3.one * 1.5f, 1f).SetEase(Ease.OutBack);
-        this.text.transform.DOMoveY(2f, 2f).SetEase(Ease.OutCirc);
-        this.text.DOFade(0f, 1f).SetEase(Ease.OutQuad).SetDelay(1f);
-        StartCoroutine(SelfDestroy());
+        
+        this.text.color = isEnemy ? Color.red : Color.white;
+        
+        Sequence seq = DOTween.Sequence();
+        seq
+            .Join(this.text.transform.DOScale(Vector3.one * 1.5f, 1f).SetEase(Ease.OutBack))
+            .Join(this.text.transform.DOBlendableLocalMoveBy(new Vector3(
+                Random.Range(-1f, 1f), Random.Range(-1f, 2f), Random.Range(-1f, 1f)), 1f).SetEase(Ease.OutCirc))
+            .Join(this.text.DOFade(0f, 1f).SetEase(Ease.OutQuad).SetDelay(1f))
+            .Play()
+            .onComplete = () => Destroy(this.gameObject);
     }
     
     private void LateUpdate() =>

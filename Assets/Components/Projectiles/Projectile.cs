@@ -67,7 +67,12 @@ public class Projectile : MonoBehaviour
                   DamageType.Physical, this.entityStats, 
                   entity.GetComponent<EntityStats>()));
               
-              entity.AttemptDamage(damage, false);
+              entity.AttemptDamage(damage, false, !this.entityOwner.CompareTag("Player"));
+              if (this.entityOwner.CompareTag("Player"))
+              {
+                  GameplayManager.instance.SetCombo(1, (int)damage);
+                  GameplayManager.instance.SetScore(damage);
+              }
               
               GameObject explosion = Instantiate(this.hitprefab, this.transform.position, Quaternion.identity);
               ParticleSystem particle = explosion.GetComponentInChildren<ParticleSystem>();

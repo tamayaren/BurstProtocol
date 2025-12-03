@@ -46,6 +46,8 @@ public class EnemyBaseAI : MonoBehaviour
     
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
+        
         if (!this.target && this.pollingTime >= this.dynamicPollingRate)
         {
             this.target = FindTarget();
@@ -61,7 +63,7 @@ public class EnemyBaseAI : MonoBehaviour
             {
                 Entity playerEntity = this.target.GetComponent<Entity>();
 
-                playerEntity.AttemptDamage(1f, false);
+                playerEntity.AttemptDamage(1f, false, true);
                 this.canDamageAgain = false;
             }
         }

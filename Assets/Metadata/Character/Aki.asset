@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   animator: {fileID: 9100000, guid: ae2331b6e396a294b96f30941278a197, type: 2}
   sprite: {fileID: -263833992, guid: 899c2a72906c93644b951fd2101fabed, type: 3}
-  baseHealth: 0
+  baseHealth: 1500
   baseAttack: 250
   baseDefense: 250
   basePathAttack: 100
@@ -25,15 +25,15 @@ MonoBehaviour:
   baseCritDamage: 35
   baseCritRate: 8
   statLevelGrowth:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.1
+  - 0.05
+  - 0.03
+  - 0.03
+  - 0.05
+  - 0.06
+  - 0.02
+  - 0.03
+  - 0.01
   dashRange: 1
   dashCooldown: 1
   fireRate: 0

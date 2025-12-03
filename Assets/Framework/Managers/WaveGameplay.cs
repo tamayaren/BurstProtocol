@@ -41,7 +41,6 @@ public class WaveGameplay : MonoBehaviour
     public void Update()
     {
         this.NewWave();
-        this.counter.text = this.enemieskilled + "/"+ this.enemiesrequired.ToString();
         
     }
 }

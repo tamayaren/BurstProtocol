@@ -55,7 +55,11 @@ public class PlayerMovement : MonoBehaviour
         if (this.animator)
             this.animator.SetTrigger("Dash");
         this.canMove = true;
-        yield return new WaitForSeconds(StatCalculator.CalculateDashCooldown(this.entityStats.dashCooldown, this.entityStats));
+
+        float dashCooldown = StatCalculator.CalculateDashCooldown(this.entityStats.dashCooldown, this.entityStats);
+        
+        UIDash.instance.Regenerate(dashCooldown);
+        yield return new WaitForSeconds(dashCooldown);
         this.canDash = true;
     }
     
@@ -94,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         if (this.isDashing)
         {
             this.dashTime -= .03f * Time.fixedDeltaTime;

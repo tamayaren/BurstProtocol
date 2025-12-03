@@ -8,13 +8,13 @@ public class DamageTextManager : MonoBehaviour
     
     private void Awake() => instance = this;
 
-    public void GenerateText(Vector3 worldSpace, float damage)
+    public void GenerateText(Vector3 worldSpace, float damage, bool isEnemy)
     {
         GameObject obj = Instantiate(this.damageTextPrefab, worldSpace, Quaternion.identity, this.transform);
         
         DamageTextRenderer dmr = obj.GetComponent<DamageTextRenderer>();
         
         obj.SetActive(true);
-        dmr.Generate(damage);
+        dmr.Generate(damage, isEnemy);
     }
 }

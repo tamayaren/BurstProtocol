@@ -6,7 +6,7 @@ namespace Game.Mechanics
     {
         private static float dashDuration = .125f;
         private static float dashSpeed = 32f;
-        public static float CalculateSpeed(float baseSpeed, EntityStats stats) => baseSpeed * (stats.speed * .8f + ((float)stats.endurance/64f));
+        public static float CalculateSpeed(float baseSpeed, EntityStats stats) => baseSpeed * 1+(stats.speed/256f + ((float)stats.endurance/64f));
         public static float CalculateDashCooldown(float baseDashCooldown, EntityStats stats) => 3f;
 
         public static (float, float) CalculateDash(EntityStats stats)
@@ -35,8 +35,8 @@ namespace Game.Mechanics
             {
                 default:
                 case DamageType.Physical:
-                    computedDamage -= (foe.defense * .25f);
-                    computedDamage += attacker.attack + statModifier.attack;
+                    computedDamage -= (foe.defense * .5f);
+                    computedDamage += (attacker.attack + statModifier.attack)/300f;
                     break;
                 
                 case DamageType.Pathogenic:

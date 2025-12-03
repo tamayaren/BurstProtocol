@@ -24,7 +24,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
                 ));
         this.entity.Health = this.entity.MaxHealth;
         
-        this.stats.FeedInitializer(new EntityStatsSchema()
+        this.stats.Feed(new EntityStatsSchema()
                 // TODO Player Saving
             .SetLevel(1)
                 
@@ -61,6 +61,7 @@ public class PlayerCharacterIdentifier : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         Vector3 movement = this.characterController.velocity;
         this.animator.SetFloat("Speed", this.characterController.velocity.magnitude);
 

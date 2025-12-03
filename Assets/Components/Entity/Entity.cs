@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -52,14 +53,19 @@ public class Entity : MonoBehaviour
     public UnityEvent<int> MaxHealthChanged = new UnityEvent<int>();
     public UnityEvent<EntityState> EntityStateChanged = new UnityEvent<EntityState>();
     public UnityEvent<int> DamageInflicted = new UnityEvent<int>();
-
+    public List<string> CollectedBuff = new List<string>();
+    
     private void Start()
     {
         this.texture = this.transform.Find("Texture")?.GetComponent<SpriteRenderer>();
         this.HealthChanged.AddListener(health =>
         {
             if (health <= 0)
+            {
                 this.EntityState = EntityState.Dead;
+                GameplayManager.instance.SetScore(this.MaxHealth);
+                GameplayManager.instance.SetCombo(1, this.MaxHealth);
+            }
         });
     }
 
@@ -76,7 +82,7 @@ public class Entity : MonoBehaviour
         this.Health = this.MaxHealth;
     }
 
-    public bool AttemptDamage(float damage, bool? ignoreIframe)
+    public bool AttemptDamage(float damage, bool? ignoreIframe, bool isEnemy)
     {
         if (!ignoreIframe.HasValue)
             if (this.iFrame) return false;
@@ -87,7 +93,8 @@ public class Entity : MonoBehaviour
         this.Health -= (int)damage;
         Debug.Log("Damage inflicted");
         
-        DamageTextManager.instance.GenerateText(this.transform.position, damage);
+        this.DamageInflicted.Invoke((int)damage);
+        DamageTextManager.instance.GenerateText(this.transform.position, damage, isEnemy);
         return true;
     }
 }

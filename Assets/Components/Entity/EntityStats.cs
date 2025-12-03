@@ -29,10 +29,8 @@ public class EntityStats : MonoBehaviour
     public float dashRange = 1f;
     public float dashCooldown = 1f;
 
-    public void FeedInitializer(EntityStatsSchema schema, float[] statLevelGrowth)
+    public void Feed(EntityStatsSchema schema, float[] statLevelGrowth)
     {
-        if (!this.initialized) return;
-
         this.initialized = true;
         this.level = schema.level;
 
@@ -66,9 +64,13 @@ public class EntityStats : MonoBehaviour
         };
     }
 
-    public void GetOrganelleModifiedStats(Dictionary<OrganelleType, Organelle> organelles)
+    public void LevelUp()
     {
+        this.level++;
+        this.unmodifiedStats.level = this.level;
         
+        
+        this.attack += (2000);
     }
 
     public int level { get => this._level; set { this.LevelChanged.Invoke(this._level, value); this._level = value; } }
@@ -77,21 +79,22 @@ public class EntityStats : MonoBehaviour
     private void _CritChanged(string statName, float oldValue, float value) => this.CritChanged.Invoke(statName, oldValue, value);
     
     
-    public int attack { get => this.level; set { _StatChanged("Attack", this._attack, value); this._attack = value; } }
-    public int defense { get => this.level; set { _StatChanged("Defense", this._defense, value); this._defense = value; } }
-    public int pathAttack { get => this.level; set { _StatChanged("PathogenicAttack", this._pathAttack, value); this._pathAttack = value; } }
-    public int pathDefense { get => this.level; set { _StatChanged("PathogenicDefense", this._pathDefense, value); this._pathDefense = value; } }
-    public int speed { get => this.level; set { _StatChanged("Speed", this._speed, value); this._speed = value; } }
-    public int endurance { get => this.level; set { _StatChanged("Endurance", this._endurance, value); this._endurance = value; } }
+    public int attack { get => this._attack; set { _StatChanged("Attack", this._attack, value); this._attack = value; } }
+    public int defense { get => this._defense; set { _StatChanged("Defense", this._defense, value); this._defense = value; } }
+    public int pathAttack { get => this._pathAttack; set { _StatChanged("PathogenicAttack", this._pathAttack, value); this._pathAttack = value; } }
+    public int pathDefense { get => this._pathDefense; set { _StatChanged("PathogenicDefense", this._pathDefense, value); this._pathDefense = value; } }
+    public int speed { get => this._speed; set { _StatChanged("Speed", this._speed, value); this._speed = value; } }
+    public int endurance { get => this._endurance; set { _StatChanged("Endurance", this._endurance, value); this._endurance = value; } }
     
-    public float critRate { get => this.level; set { _CritChanged("CritRate", this._critRate, value); this._critRate = value; } }
-    public float critDamage { get => this.level; set { _CritChanged("CritDamage", this._critDamage, value); this._critDamage = value; } }
+    public float critRate { get => this._critRate; set { _CritChanged("CritRate", this._critRate, value); this._critRate = value; } }
+    public float critDamage { get => this._critDamage; set { _CritChanged("CritDamage", this._critDamage, value); this._critDamage = value; } }
 
     public float GetStatFromType(Stat stat)
     {
         switch (stat)
         {
-            default:
+            case Stat.Level:
+                return this.level;
             case Stat.Attack:
                 return this.attack;
             case Stat.Defence:
@@ -106,6 +109,7 @@ public class EntityStats : MonoBehaviour
                 return this.pathDefense;
             case Stat.CritRate:
                 return this.critRate;
+            default:
             case Stat.CritDamage:
                 return this.critDamage;
         }

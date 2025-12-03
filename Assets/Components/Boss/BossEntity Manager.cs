@@ -29,7 +29,7 @@ public class BossEntityManager : MonoBehaviour
     void Phase1()
     {
         this.bossPrefab.SetActive(true);
-        bossStats.FeedInitializer(new EntityStatsSchema()    
+        bossStats.Feed(new EntityStatsSchema()    
             .SetLevel(3)
             .SetAttack(300)
             .SetDefense(300)
@@ -42,7 +42,7 @@ public class BossEntityManager : MonoBehaviour
 
     void Phase2()
     {
-        bossStats.FeedInitializer(new EntityStatsSchema()   
+        bossStats.Feed(new EntityStatsSchema()   
             .SetLevel(6)
             .SetAttack(600)
             .SetDefense(600)

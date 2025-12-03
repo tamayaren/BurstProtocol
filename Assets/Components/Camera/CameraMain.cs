@@ -16,7 +16,8 @@ public class CameraMain : MonoBehaviour
     private Quaternion _rotation;
     public UnityEvent<Quaternion> rotationChanged = new UnityEvent<Quaternion>();
     [SerializeField] private Quaternion baseRotation;
-    
+
+    public bool subjectLooking;
     public Quaternion rotation
     {
         get => this._rotation;
@@ -41,6 +42,7 @@ public class CameraMain : MonoBehaviour
     private void Update()
     {
         if (!this.camera) return;
+        if (!this.subjectLooking) return;
         
         this.camera.transform.position = Vector3.Lerp(this.camera.transform.position, this.subject.position + this.offset + this.lookOffset, this.smoothness * Time.deltaTime);
         this.camera.transform.rotation = new Quaternion(this.rotation.x, this.rotation.y, this.rotation.z, this.rotation.w);

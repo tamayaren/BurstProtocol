@@ -32,7 +32,7 @@ namespace Game.Mechanics.Organelles
 
     public enum Stat
     {
-        Health = 0,
+        Level = 0,
         Attack = 1,
         Defence = 2,
         PathogenicAttack = 3,
