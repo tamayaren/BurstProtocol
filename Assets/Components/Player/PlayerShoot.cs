@@ -37,6 +37,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         if (!this.canShoot) return;
         
         this.shoot.Shoot(

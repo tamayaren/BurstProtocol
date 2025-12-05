@@ -7,7 +7,6 @@ public class EnemyBaseAI : MonoBehaviour
     private Entity entity;
     private NavMeshAgent agent;
     private Transform target;
-    private WaveGameplay gameplay;
 
     private float dynamicPollingRate = .25f;
     private float pollingTime = 0f;
@@ -19,18 +18,8 @@ public class EnemyBaseAI : MonoBehaviour
     {
         this.entity = GetComponent<Entity>();
         this.agent = GetComponent<NavMeshAgent>();
-        this.gameplay = GameObject.FindObjectOfType<WaveGameplay>();
 
         this.agent.updateRotation = false;
-        this.entity.EntityStateChanged.AddListener(state =>
-        {
-            if (state == EntityState.Dead && !this.enemyVoided)
-            {
-                this.enemyVoided = true;
-                this.gameplay.enemieskilled++;
-                this.gameObject.SetActive(false);
-            }
-        });
     }
 
     public void Reinitialize()
@@ -47,6 +36,7 @@ public class EnemyBaseAI : MonoBehaviour
     private void Update()
     {
         if (GameplayManager.instance.gameSession == GameSession.Paused) return;
+        if (this.entity.EntityState == EntityState.Dead) return;
         
         if (!this.target && this.pollingTime >= this.dynamicPollingRate)
         {
@@ -63,7 +53,7 @@ public class EnemyBaseAI : MonoBehaviour
             {
                 Entity playerEntity = this.target.GetComponent<Entity>();
 
-                playerEntity.AttemptDamage(1f, false, true);
+                playerEntity.AttemptDamage(10f, false, true);
                 this.canDamageAgain = false;
             }
         }

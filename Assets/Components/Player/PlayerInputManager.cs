@@ -30,8 +30,6 @@ public class PlayerInputManager : MonoBehaviour
         this.skills = new[]
         {
             this.inputSystem.FindAction("Skill1"),
-            this.inputSystem.FindAction("Skill2"),
-            this.inputSystem.FindAction("Skill3")
         };
         
         HookSkillInputActions();

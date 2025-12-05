@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnDash(InputAction.CallbackContext context)
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         if (this.canDash)
             StartCoroutine(DashAction());
     }
@@ -75,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         this.baseSpeed = StatCalculator.CalculateSpeed(this.baseSpeed, this.entityStats);
         this.entityStats.StatChanged.AddListener(((stat, _, value) =>
         {
+            if (GameplayManager.instance.gameSession == GameSession.Paused) return;
             if (stat.Equals("Speed") || stat.Equals("Endurance"))
                 this.baseSpeed = StatCalculator.CalculateSpeed(this.baseSpeed, this.entityStats);
         }));
