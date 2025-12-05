@@ -35,7 +35,7 @@ namespace Game.Mechanics
             {
                 default:
                 case DamageType.Physical:
-                    computedDamage -= (foe.defense * .5f);
+                    computedDamage -= (foe.defense * .05f);
                     computedDamage += (attacker.attack + statModifier.attack)/300f;
                     break;
                 

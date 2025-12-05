@@ -7,7 +7,6 @@ public class PerpetualSpawner : MonoBehaviour
     private EntityStats playerStats;
     private GameObject player;
     
-    public int baseSpawn = 2;
     public float spawnElapsed = 1f;
 
     public int totalEnemies;
@@ -23,8 +22,7 @@ public class PerpetualSpawner : MonoBehaviour
         this.parent = GameObject.Find("Enemies").transform;
         this.playerStats.LevelChanged.AddListener((oldA, newA) =>
         {
-            this.baseSpawn = 2 * this.playerStats.level;
-            this.maxEnemies = 5 + Mathf.Clamp((this.playerStats.level), 1, 30);
+            this.maxEnemies = 5 + Mathf.Clamp((this.playerStats.level)+2, 1, 30);
         });
     }
     

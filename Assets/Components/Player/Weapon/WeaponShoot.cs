@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class WeaponShoot : MonoBehaviour
 {
+    public static WeaponShoot instance;
     [SerializeField] private GameObject bullet;
     private readonly int projectileAmount = 100;
 
     [SerializeField] private Transform muzzle;
     
-    private List<GameObject> projectiles;
+    public List<GameObject> projectiles;
     private GameObject projectileParent;
     private GameObject projectileHolder; 
     public Entity owner;
     
+    private void Awake() => instance = this;
     private void Start()
     {
         this.projectileParent = GameObject.Find("Projectiles");
@@ -54,6 +56,8 @@ public class WeaponShoot : MonoBehaviour
         Projectile initializer = proj.GetComponent<Projectile>();
         
         spriteRenderer.sprite = sprite;
+        spriteRenderer.color = Color.white;
+        initializer.enemyProjectile = false;
         initializer.Initialize(this.owner, speed, dir, character.baseAttackDamage, false);
     }
 }

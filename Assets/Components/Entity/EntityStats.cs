@@ -24,6 +24,7 @@ public class EntityStats : MonoBehaviour
     public UnityEvent<string, float, float> CritChanged = new UnityEvent<string, float, float>();
     public UnityEvent<int, int> LevelChanged = new UnityEvent<int, int>();
 
+    private Entity entity;
     private EntityStatsSchema modifiedStats;
     public bool initialized;
     public float dashRange = 1f;
@@ -31,6 +32,10 @@ public class EntityStats : MonoBehaviour
 
     private float[] statLevelGrowth;
 
+    private void Start()
+    {
+        this.entity = GetComponent<Entity>();
+    }
     public void Feed(EntityStatsSchema schema, float[] statLevelGrowth)
     {
         this.initialized = true;
@@ -58,7 +63,8 @@ public class EntityStats : MonoBehaviour
     {
         this.level++;
         this.modifiedStats.level = this.level;
-        
+
+        this.entity.MaxHealth += 150;
         this.attack += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);
         this.defense += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);
         this.pathAttack += (int)Mathf.Pow(2000 * (this.statLevelGrowth[1]), this.level/80f);

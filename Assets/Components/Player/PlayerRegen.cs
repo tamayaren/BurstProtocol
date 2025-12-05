@@ -14,6 +14,7 @@ public class PlayerRegen : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         if (this.entity.Health >= this.entity.MaxHealth) return;
         this.t += Time.deltaTime;
 
@@ -24,7 +25,7 @@ public class PlayerRegen : MonoBehaviour
             {
                 Radicals buff = PlayerBuffs.instance.buffsLogics["Radicals"] as Radicals;
 
-                regenAdd = (int)(regenAdd * (0.2f * buff.stack));
+                regenAdd += (int)(regenAdd * (0.2f * buff.stack));
             }
             
             this.entity.Health += regenAdd;

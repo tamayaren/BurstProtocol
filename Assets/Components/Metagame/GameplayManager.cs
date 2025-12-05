@@ -31,6 +31,7 @@ public class GameplayManager : MonoBehaviour
     public int killRequired;
     
     public int nextLevel;
+    public int playerLevel;
     
     public UnityEvent<int> OnEnemyKilled = new UnityEvent<int>();
     public UnityEvent<int> OnKillRequired = new UnityEvent<int>();
@@ -84,9 +85,11 @@ public class GameplayManager : MonoBehaviour
             this.nextLevel = (int)(this.nextLevel * 1.2f);
             
             this.playerStats.LevelUp();
+            UINotification.instance.Notify($"LEVELED UP! {this.playerStats.level-1} -> {this.playerStats.level}", Color.white);
             this.OnNextLevel.Invoke(this.nextLevel);
-
-            if (this.playerStats.level % 3 == 0)
+            
+            this.playerLevel = this.playerStats.level;
+            if (this.playerStats.level % 2 == 0)
             {
                 BuffDistributor.instance.Distribute();
             }

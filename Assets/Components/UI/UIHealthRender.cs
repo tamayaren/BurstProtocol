@@ -14,6 +14,8 @@ public class UIHealthRender : MonoBehaviour
         if (this.lastHealth > health) IconDamage.instance.Shake();
         this.healthText.text = $"{Mathf.Round(this.playerEntity.Health).ToString()}/{Mathf.Round(this.playerEntity.MaxHealth)}";
         this.fillImage.fillAmount = (float)((float)this.playerEntity.Health / (float)this.playerEntity.MaxHealth);
+        
+        this.lastHealth = health;
     }
     
     private void Start()

@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     private float baseDamage;
     [SerializeField] private GameObject hitprefab;
 
+    public bool enemyProjectile = false;
     [SerializeField] private ParticleSystem particle;
     public bool canDamage = true;
     private void Start()
@@ -37,6 +38,7 @@ public class Projectile : MonoBehaviour
         this.baseDamage = damage;
         this.started = true;
         this.direction = direction;
+        
         
         if (canSelfDestroy != null)
             StartCoroutine(SelfDestroy());
@@ -70,7 +72,9 @@ public class Projectile : MonoBehaviour
     {
         if (!this.started) return;
         if (!this.gameObject.activeInHierarchy) return;
-
+        if (GameplayManager.instance.gameSession == GameSession.Paused) return;
+        
+        if (this.entityOwner == null) this.gameObject.SetActive(false);
         if (this.entityOwner.CompareTag("Player") || this.lastFireTime >= this.maxFireTime)
         {
             if (PlayerBuffs.instance.buffs.ContainsKey("SmartPathogen"))
@@ -106,7 +110,7 @@ public class Projectile : MonoBehaviour
     {
       if (!this.started) return;
       if (!this.gameObject.activeInHierarchy) return;
-
+      if (GameplayManager.instance.gameSession == GameSession.Paused) return;
       if (!this.canDamage) return;
       Ray ray = new Ray(this.transform.position, this.direction.normalized);
       Debug.DrawRay(ray.origin, ray.direction, Color.red);
@@ -119,6 +123,7 @@ public class Projectile : MonoBehaviour
           {
               Entity entity = hit.collider.gameObject.GetComponent<Entity>();
               if (!entity) return;
+              if (this.enemyProjectile && hit.collider.CompareTag("Enemy")) return;
 
               int damage = StatCalculator.CalculateDamage(new DamageParameters(
                   this.baseDamage, 
