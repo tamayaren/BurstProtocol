@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a3077a2e29ce741a0a864751fc1d3e0c
+guid: 2b990e9716c52a64988ff25adf8c7c68
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vera_colored_var_1_0
+      name: shiroi sprite colored var 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8115b8966f33a4c2fbf9e64dd7b37de6
-      internalID: 1764459976
+      spriteID: 134a4f193f46a4344b64103cca880231
+      internalID: -2129173066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vera_colored_var_1_1
+      name: shiroi sprite colored var 1_1
       rect:
         serializedVersion: 2
         x: 64
@@ -147,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47b3bca2ca4504c5da70a8f4fc865393
-      internalID: 1862054158
+      spriteID: 3bc05720714df8a4b8f0940ad97a1a42
+      internalID: -1989935470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vera_colored_var_1_2
+      name: shiroi sprite colored var 1_2
       rect:
         serializedVersion: 2
         x: 128
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec25b4d97d3564eaeaeb86b87a75c784
-      internalID: 990020096
+      spriteID: ccb470b91281c3648af63419b6c40e8b
+      internalID: 276125270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vera_colored_var_1_3
+      name: shiroi sprite colored var 1_3
       rect:
         serializedVersion: 2
         x: 192
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea691b35570f0425aa0f41ff0455550e
-      internalID: -555725495
+      spriteID: e910e30a4bc356941b70eacbfe6730cb
+      internalID: -2108732400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vera_colored_var_1_4
+      name: shiroi sprite colored var 1_4
       rect:
         serializedVersion: 2
         x: 256
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d15f1a43e0c848049557d47499eaf4c
-      internalID: 1706842244
+      spriteID: 1c604a2b153adeb4499c3c4bbbe52529
+      internalID: -439371229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vera_colored_var_1_5
+      name: shiroi sprite colored var 1_5
       rect:
         serializedVersion: 2
         x: 320
@@ -235,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81a87099f3aaf40f8a3adb493ad50c1b
-      internalID: 1446174708
+      spriteID: 20e37c26eaf26bd4e9d61c11143769f5
+      internalID: -394134733
       vertices: []
       indices: 
       edges: []
@@ -245,7 +245,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2787f3ccc7d6f4901bf56edcdab2cd9c
+    spriteID: 9d5856371922b704685e2f671910fb7f
     internalID: 0
     vertices: []
     indices: 
@@ -255,12 +255,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      vera_colored_var_1_0: 1764459976
-      vera_colored_var_1_1: 1862054158
-      vera_colored_var_1_2: 990020096
-      vera_colored_var_1_3: -555725495
-      vera_colored_var_1_4: 1706842244
-      vera_colored_var_1_5: 1446174708
+      shiroi sprite colored var 1_0: -2129173066
+      shiroi sprite colored var 1_1: -1989935470
+      shiroi sprite colored var 1_2: 276125270
+      shiroi sprite colored var 1_3: -2108732400
+      shiroi sprite colored var 1_4: -439371229
+      shiroi sprite colored var 1_5: -394134733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
