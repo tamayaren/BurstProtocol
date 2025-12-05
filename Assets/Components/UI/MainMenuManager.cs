@@ -23,7 +23,6 @@ public class MainMenuManager : MonoBehaviour
     public void Update()
     {
         orb.DORotate(orb.rotation.eulerAngles + Vector3.up * 90, 5f).SetEase(Ease.Linear);
-        logo.DOScale(1.2f, 3f);
     }
 
     public void startGame()
