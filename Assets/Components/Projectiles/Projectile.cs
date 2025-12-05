@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Game.Mechanics;
 using Mono.Cecil;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Projectile : MonoBehaviour
     private float baseDamage;
     [SerializeField] private GameObject hitprefab;
 
+    [SerializeField] private ParticleSystem particle;
     public bool canDamage = true;
     private void Start()
     {
@@ -40,10 +42,63 @@ public class Projectile : MonoBehaviour
             StartCoroutine(SelfDestroy());
     }
 
+    private bool isFireForget = false;
+    private float lastFireTime = 0f;
+    private float maxFireTime = 0f;
+    private Transform projectileTarget;
+    
+    public IEnumerable<GameObject> GetNearbyObjects(string tag, float radius)
+    {
+        float radiusSqr = radius * radius;
+        Vector3 currentPos = this.transform.position;
+
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (GameObject obj in taggedObjects)
+        {
+            if (obj == null) continue;
+
+            Vector3 offset = obj.transform.position - currentPos;
+            if (offset.sqrMagnitude <= radiusSqr)
+            {
+                yield return obj;
+            }
+        }
+    }
+    
     private void FixedUpdate()
     {
         if (!this.started) return;
         if (!this.gameObject.activeInHierarchy) return;
+
+        if (this.entityOwner.CompareTag("Player") || this.lastFireTime >= this.maxFireTime)
+        {
+            if (PlayerBuffs.instance.buffs.ContainsKey("SmartPathogen"))
+            {
+                SmartPathogen smartPathogen = (SmartPathogen)PlayerBuffs.instance.buffsLogics["SmartPathogen"];
+
+                if (!this.isFireForget)
+                {
+                    this.maxFireTime = .8f + (0.3f * smartPathogen.stack);
+                }
+                else
+                {
+                    this.lastFireTime += Time.fixedDeltaTime;
+                    
+                    if (!this.projectileTarget)
+                        foreach (GameObject enemy in GetNearbyObjects("Enemy", 50))
+                        {
+                            this.projectileTarget = enemy.transform;
+                            break;
+                        }
+                    else
+                    {
+                        this.direction = (this.transform.position - this.projectileTarget.position).normalized;
+                    }
+                }
+            }
+        }
+        
         this.rb.linearVelocity = this.direction * this.speed;
     }
 
@@ -77,6 +132,7 @@ public class Projectile : MonoBehaviour
                   GameplayManager.instance.SetScore(damage);
               }
               
+              this.particle.Play();
               GameObject explosion = Instantiate(this.hitprefab, this.transform.position, Quaternion.identity);
               ParticleSystem particle = explosion.GetComponentInChildren<ParticleSystem>();
               particle.Play();

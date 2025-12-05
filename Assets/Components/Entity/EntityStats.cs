@@ -110,6 +110,7 @@ public class EntityStats : MonoBehaviour
                 return this.critDamage;
         }
     }
+
 }
 
 

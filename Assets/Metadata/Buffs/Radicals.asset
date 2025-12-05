@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Radicals
   buffDescription: Health regeneration is increased by 2-3-4-5-6% (max stack 5)
-  maxStacks: 1
-  attachedLogic: {fileID: 0}
+  maxStacks: 5
+  icon: {fileID: 1237256131, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

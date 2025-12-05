@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607e49fd0505889479e953f572c1f1ba, type: 3}
   m_Name: MinuteMan
   m_EditorClassIdentifier: 
-  fullName: Minute Man
-  buffDescription: First attack after 10-8-6-4 seconds is nullified, and has a cooldown
-    of 60-55-50-45 seconds. (max stack 4)
+  fullName: Neuronic Numbness
+  buffDescription: Some enemies spawn with low health. Chance is 3-6-10-15-20% (max
+    5 stacks)
   maxStacks: 4
-  attachedLogic: {fileID: 0}
+  icon: {fileID: 622694380, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

@@ -81,10 +81,15 @@ public class GameplayManager : MonoBehaviour
         if (this.killRequired >= this.nextLevel)
         {
             this.killRequired = 0;
-            this.nextLevel = (int)(this.nextLevel * 1.5f);
+            this.nextLevel = (int)(this.nextLevel * 1.2f);
             
             this.playerStats.LevelUp();
             this.OnNextLevel.Invoke(this.nextLevel);
+
+            if (this.playerStats.level % 3 == 0)
+            {
+                BuffDistributor.instance.Distribute();
+            }
         }
         this.OnEnemyKilled.Invoke(this.enemyKilled);
         this.OnKillRequired.Invoke(this.killRequired);

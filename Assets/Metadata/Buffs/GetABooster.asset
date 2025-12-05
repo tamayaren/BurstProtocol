@@ -15,4 +15,4 @@ MonoBehaviour:
   fullName: Get A Booster
   buffDescription: Basic attack shoots an additional one projectile (max stack 5).
   maxStacks: 5
-  attachedLogic: {fileID: 0}
+  icon: {fileID: 908284022, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

@@ -1,4 +1,4 @@
-using GamespaceModifiers;
+
 using UnityEngine;
 
 public class MinuteMan : GameModifierBase
@@ -11,6 +11,6 @@ public class MinuteMan : GameModifierBase
 
     public override void Uninitialize()
     {
-        
+        base.Uninitialize();
     }
 }

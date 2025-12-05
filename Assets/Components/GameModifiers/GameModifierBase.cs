@@ -1,30 +1,30 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace GamespaceModifiers
+public class GameModifierBase : MonoBehaviour
 {
-    public abstract class GameModifierBase : MonoBehaviour
+    public int stack = 1;
+
+    public string modifierName;
+    public string modifierDescription;
+
+    public ModifierType modifierType;
+    
+    public UnityEvent<int> stackChanged = new UnityEvent<int>();
+    public virtual void Initialize()
     {
-        public int stack;
-
-        public string modifierName;
-        public string modifierDescription;
-
-        public ModifierType modifierType;
-
-        public virtual void Initialize()
-        {
-            
-        }
-
-        public virtual void Uninitialize()
-        {
-            
-        }
+        Debug.Log("Base assigned");
     }
 
-    public enum ModifierType
+    public virtual void Uninitialize()
     {
-        CharacterBuff,
-        SessionModifier,
+        Destroy(this.gameObject);
     }
 }
+
+public enum ModifierType
+{
+    CharacterBuff,
+    SessionModifier,
+}
+

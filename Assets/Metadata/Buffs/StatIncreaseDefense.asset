@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 607e49fd0505889479e953f572c1f1ba, type: 3}
-  m_Name: RountineAntibodies
+  m_Name: StatIncreaseDefense
   m_EditorClassIdentifier: 
-  fullName: Mutation
-  buffDescription: For the next wave, a random stat is increased by 2% of current
-    stat, which persists throughout the wave, until the next wave it will be removed
-    and another stat is selected.
-  maxStacks: 1
+  fullName: Stat Increase (Defense)
+  buffDescription: Permanent increase to defense by 50 (current session)
+  maxStacks: 100
+  icon: {fileID: -734894482, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

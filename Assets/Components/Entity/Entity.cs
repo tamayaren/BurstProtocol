@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
         get => this._health;
         set
         {
-            this._health = value;
+            this._health = Mathf.Clamp(value, 0, this._maxHealth);
             if (this._health <= 0f)
                 this.EntityState = EntityState.Dead;
             
@@ -59,7 +59,7 @@ public class Entity : MonoBehaviour
     public UnityEvent<EntityState> EntityStateChanged = new UnityEvent<EntityState>();
     public UnityEvent<int> DamageInflicted = new UnityEvent<int>();
     public List<string> CollectedBuff = new List<string>();
-
+    
     public IEnumerator OnExplode()
     {
         yield return new WaitForSeconds(.1f);
@@ -88,6 +88,7 @@ public class Entity : MonoBehaviour
         Vector3 vector3 = this.transform.position;
         vector3.y = 1f;
         this.transform.position = vector3;
+
     }
 
     private void OnEnable()
@@ -109,6 +110,12 @@ public class Entity : MonoBehaviour
         this.DamageInflicted.Invoke((int)damage);
         DamageTextManager.instance.GenerateText(this.transform.position, damage, isEnemy);
         return true;
+    }
+
+    public void SetIFrame(bool value)
+    {
+        this.iFrame = value;
+        this.texture.DOColor(this.iFrame ? Color.blue : Color.white, .2f);
     }
 }
 

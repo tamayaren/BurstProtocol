@@ -15,4 +15,4 @@ MonoBehaviour:
   fullName: 'Health Potion  '
   buffDescription: Regain 30% health.
   maxStacks: 1
-  attachedLogic: {fileID: 0}
+  icon: {fileID: 1060483619, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

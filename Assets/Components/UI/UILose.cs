@@ -39,7 +39,7 @@ public class UILose : MonoBehaviour
         
         DOTween.To(() => 0f, x => s = x, GameplayManager.instance.GetScore(), 1f).OnUpdate(() =>
             {
-                this.score.text = s.ToString();
+                this.score.text = Mathf.Round(s).ToString();
             }).SetEase(Ease.OutQuad);
         
         DOTween.To(() => 0f, x => t = x, GameplayManager.instance.timer, 1f).OnUpdate(() =>
@@ -50,7 +50,7 @@ public class UILose : MonoBehaviour
         
         DOTween.To(() => 0f, x => e = x, GameplayManager.instance.enemyKilled, 1f).OnUpdate(() =>
         {
-            this.score.text = e.ToString();
+            this.score.text = Mathf.Round(e).ToString();
         }).SetEase(Ease.OutQuad);
     }
 }

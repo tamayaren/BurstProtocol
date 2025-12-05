@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using GamespaceModifiers;
+using System.Reflection;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,7 +11,8 @@ public class PlayerBuffs : SerializedMonoBehaviour
     public static PlayerBuffs instance;
     
     public Dictionary<string, BuffMetadata> buffs;
-    public UnityEvent<string, BuffMetadata> onBuffAdded;
+    public Dictionary<string, GameModifierBase> buffsLogics;
+    public UnityEvent<string, BuffMetadata, GameModifierBase> onBuffAdded;
     public UnityEvent<string> onBuffRemoved;
     public UnityEvent<string, int> reupdateBuffStack;
 
@@ -18,8 +20,9 @@ public class PlayerBuffs : SerializedMonoBehaviour
     {
         instance = this;   
         this.buffs = new Dictionary<string, BuffMetadata>();
-        this.onBuffAdded = new UnityEvent<string, BuffMetadata>();
+        this.onBuffAdded = new UnityEvent<string, BuffMetadata, GameModifierBase>();
         this.onBuffRemoved = new UnityEvent<string>();
+        this.buffsLogics = new Dictionary<string, GameModifierBase>();
         this.reupdateBuffStack = new UnityEvent<string, int>();
     }
 
@@ -35,16 +38,33 @@ public class PlayerBuffs : SerializedMonoBehaviour
                 buffLogic.stack++;
             
             this.reupdateBuffStack.Invoke(buffName, buff.maxStacks);
+            
+            buffLogic.stackChanged.Invoke(buffLogic.stack);
             return;
         }
-
-        Type type = Type.GetType(buffName);
+        
+        Debug.Log(typeof(Rejuvenation).AssemblyQualifiedName);
+        Type reference = typeof(Rejuvenation);
+        
+        string assemblyName = reference.Assembly.GetName().Name;
+        Type type = Type.GetType(buffName + ", " + assemblyName);
         Debug.Log($"Attempt {buffName}");
         
         GameModifierBase buffAddedLogic = (GameModifierBase)this.gameObject.AddComponent(type);
         this.buffs.Add(buffName, buff);
-        this.onBuffAdded.Invoke(buffName, buff);
+        this.buffsLogics.Add(buffName, buffAddedLogic);
+
+        Debug.Log(this.onBuffAdded);
+        Debug.Log(buffAddedLogic);
+
+        StartCoroutine(InitiailizeBuff(buffName, buff, buffAddedLogic));
         buffAddedLogic.Initialize();
+    }
+
+    private IEnumerator InitiailizeBuff(string name, BuffMetadata buff, GameModifierBase modifierLogic)
+    {
+        yield return null;
+        this.onBuffAdded.Invoke(name, buff, modifierLogic);
     }
 
     public void RemoveBuffStack(string name)
@@ -70,6 +90,7 @@ public class PlayerBuffs : SerializedMonoBehaviour
 
             buffLogic.Uninitialize();
             bool metadata = this.buffs.Remove(buffName);
+            Destroy(buffLogic);
             this.onBuffRemoved.Invoke(buffName);
         }
     }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607e49fd0505889479e953f572c1f1ba, type: 3}
   m_Name: CytoplasmicViscosity
   m_EditorClassIdentifier: 
-  fullName: Get A Booster
+  fullName: Cytoplasmic Viscosity
   buffDescription: AoE attacks have a broader range by 10-20-30-40-50 magnitude (max
     stack 5)
   maxStacks: 5
-  attachedLogic: {fileID: 0}
+  icon: {fileID: -1266287511, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

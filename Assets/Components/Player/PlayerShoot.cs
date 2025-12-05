@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -39,9 +40,20 @@ public class PlayerShoot : MonoBehaviour
     {
         if (GameplayManager.instance.gameSession == GameSession.Paused) return;
         if (!this.canShoot) return;
-        
-        this.shoot.Shoot(
-            this.projectileSprite, this.speed, Input.mousePosition, this.character.currentCharacter);
+
+        int stack = 1;
+        if (TryGetComponent<GetABooster>(out GetABooster getABooster))
+        {
+            stack += getABooster.stack;    
+        }
+
+        for (int i = 0; i < stack; i++)
+        {
+            this.shoot.Shoot(
+                this.projectileSprite, this.speed + Random.Range(stack, (stack)*3), Input.mousePosition +
+                    new Vector3(Random.Range(-24f, 24f) * stack, 0f, Random.Range(-24, 24f) * stack)
+                , this.character.currentCharacter);
+        }
 
         StartCoroutine(Cooldown());
     }

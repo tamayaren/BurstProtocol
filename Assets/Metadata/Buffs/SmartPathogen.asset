@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607e49fd0505889479e953f572c1f1ba, type: 3}
   m_Name: SmartPathogen
   m_EditorClassIdentifier: 
-  fullName: SmartPathogen
-  buffDescription: 'All basic attack projectiles gain fire-and-forget passive: locks
-    on a nearby target and loses tracking after 0.5-0.8-1-1.2-1.5 seconds. (max stack
-    5)'
+  fullName: Smart Pathogen
+  buffDescription: 'Al basic attack projectiles gain fire-and-forget passive: locks
+    on a nearby target alnd loses tracking after 0.5-0.8-1-1.2-1.5 seconds. (max
+    stack 5)'
   maxStacks: 5
+  icon: {fileID: -11961949, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

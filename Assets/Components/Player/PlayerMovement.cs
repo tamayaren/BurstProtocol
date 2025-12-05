@@ -46,11 +46,13 @@ public class PlayerMovement : MonoBehaviour
         this.canMove = false;
         this.canDash = false;
         this.entity.EntityState = EntityState.Invincible;
+        this.entity.SetIFrame(true);
         if (this.animator)
             this.animator.Play("Dash");
         yield return new WaitForSeconds(.15f);
         this.entity.EntityState = EntityState.Alive;
         yield return new WaitForSeconds(computedSpeed.Item2 - .15f);
+        this.entity.SetIFrame(false);
         this.isDashing = false;
         if (this.animator)
             this.animator.SetTrigger("Dash");

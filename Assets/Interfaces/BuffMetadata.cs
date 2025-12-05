@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using GamespaceModifiers;
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Metadata/Buff", fileName = "Buff")]

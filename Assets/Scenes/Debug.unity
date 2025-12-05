@@ -1139,37 +1139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Priority:
-    Enabled: 0
-    m_Value: 0
-  OutputChannel: 1
-  StandbyUpdate: 2
-  m_StreamingVersion: 20241001
-  m_LegacyPriority: 0
-  Target:
-    TrackingTarget: {fileID: 0}
-    LookAtTarget: {fileID: 0}
-    CustomLookAtTarget: 0
-  Lens:
-    FieldOfView: 40
-    OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 5000
-    Dutch: 0
-    ModeOverride: 0
-    PhysicalProperties:
-      GateFit: 2
-      SensorSize: {x: 21.946, y: 16.002}
-      LensShift: {x: 0, y: 0}
-      FocusDistance: 10
-      Iso: 200
-      ShutterSpeed: 0.005
-      Aperture: 16
-      BladeCount: 5
-      Curvature: {x: 2, y: 11}
-      BarrelClipping: 0.25
-      Anamorphism: 0
-  BlendHint: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,6 +2851,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.24209595
       objectReference: {fileID: 0}
+    - target: {fileID: 4684592859574268849, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
+      propertyPath: m_Name
+      value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770084170309489113, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
+      propertyPath: m_Name
+      value: Description
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962133954829484383, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
+      propertyPath: m_Name
+      value: Description
+      objectReference: {fileID: 0}
     - target: {fileID: 5183615741242097716, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3190,6 +3171,10 @@ PrefabInstance:
       propertyPath: playerEntity
       value: 
       objectReference: {fileID: 2106145380}
+    - target: {fileID: 8440360776717138928, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
+      propertyPath: m_Name
+      value: Title
+      objectReference: {fileID: 0}
     - target: {fileID: 8446605438814002987, guid: 6fcbc2de29e15492d896287bd93ca709, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3624,8 +3609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0324d66a543344bdca2677ec50ca57ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayStarted: 1
-  gameSession: 0
+  gameplayStarted: 0
+  gameSession: 1
   timer: 0
   ScoreChanged:
     m_PersistentCalls:
@@ -3680,26 +3665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowDebugText: 0
-  ShowCameraFrustum: 1
-  IgnoreTimeScale: 1
-  WorldUpOverride: {fileID: 0}
-  ChannelMask: -1
-  UpdateMethod: 2
-  BlendUpdateMethod: 1
-  LensModeOverride:
-    Enabled: 0
-    DefaultMode: 2
-  DefaultBlend:
-    Style: 1
-    Time: 2
-    CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  CustomBlends: {fileID: 0}
 --- !u!1 &1696883192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,6 +4385,7 @@ GameObject:
   - component: {fileID: 2106145385}
   - component: {fileID: 2106145386}
   - component: {fileID: 2106145387}
+  - component: {fileID: 2106145388}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4665,6 +4631,9 @@ MonoBehaviour:
     - Name: buffs
       Entry: 6
       Data: 
+    - Name: buffsLogics
+      Entry: 6
+      Data: 
   onBuffAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -4688,6 +4657,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 6812928237406646918, guid: ae54a34480bb28a49bf0700a56febb9c, type: 3}
   projectileSprite: {fileID: -380892886, guid: f454c670327d6f540ab941f7efbb1d0a, type: 3}
+--- !u!114 &2106145388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106145373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9756a59800ee43c49bdcaf2a698febd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 316845790}
+  weapon: {fileID: 138613389}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

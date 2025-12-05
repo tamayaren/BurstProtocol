@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Hyperactive
   m_EditorClassIdentifier: 
   fullName: Hyperactive
-  buffDescription: When damaged, the character speeds up and has increased Speed
-    stat of 30-60-90-120 for 1-2-3-4 seconds. Cooldown 16-12-8-4 seconds (max stack
-    4)
+  buffDescription: Wen damage, the character speeds up and has increased Speed stat
+    of 50-70-90-110 for 1-2-3-4 seconds. Cooldown 16-12-8-4 seconds (max stack 4)
   maxStacks: 4
-  attachedLogic: {fileID: 0}
+  icon: {fileID: 1519983151, guid: 00f33f316e04bce4583912b280731ef7, type: 3}

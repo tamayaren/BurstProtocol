@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 607e49fd0505889479e953f572c1f1ba, type: 3}
-  m_Name: Rejunevation
+  m_Name: StatIncreaseCritRate
   m_EditorClassIdentifier: 
-  fullName: Rejuvenation
-  buffDescription: Gain full health.
-  maxStacks: 1
-  attachedLogic: {fileID: 0}
+  fullName: Stat Increase (CRIT Rate)
+  buffDescription: Permanent increase to CRIT Rate % by 1 (current session)
+  maxStacks: 100
+  icon: {fileID: -734894482, guid: 00f33f316e04bce4583912b280731ef7, type: 3}
