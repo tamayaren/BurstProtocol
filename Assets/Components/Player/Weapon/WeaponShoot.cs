@@ -5,6 +5,8 @@ public class WeaponShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     private readonly int projectileAmount = 100;
+
+    [SerializeField] private Transform muzzle;
     
     private List<GameObject> projectiles;
     private GameObject projectileParent;
@@ -19,7 +21,7 @@ public class WeaponShoot : MonoBehaviour
         
         for (int i = 0; i < this.projectileAmount; i++)
         {
-            GameObject projectileHolder = Instantiate(this.bullet,this.transform.position,Quaternion.identity, this.projectileParent.transform);
+            GameObject projectileHolder = Instantiate(this.bullet,this.muzzle.position,Quaternion.identity, this.projectileParent.transform);
             projectileHolder.SetActive(false);
             this.projectiles.Add(projectileHolder);
         }
@@ -44,7 +46,7 @@ public class WeaponShoot : MonoBehaviour
         
         if (proj != null)
         {
-            proj.transform.position = this.owner.transform.position;
+            proj.transform.position = this.muzzle.position;
             proj.SetActive(true);
         }
         
@@ -52,6 +54,6 @@ public class WeaponShoot : MonoBehaviour
         Projectile initializer = proj.GetComponent<Projectile>();
         
         spriteRenderer.sprite = sprite;
-        initializer.Initialize(this.owner, speed, dir, character.baseAttackDamage);
+        initializer.Initialize(this.owner, speed, dir, character.baseAttackDamage, false);
     }
 }

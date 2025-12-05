@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     private float baseDamage;
     [SerializeField] private GameObject hitprefab;
 
+    public bool canDamage = true;
     private void Start()
     {
         this.rb = GetComponent<Rigidbody>();
@@ -21,11 +22,11 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator SelfDestroy()
     {
-        yield return new WaitForSeconds(10f / this.speed);
+        yield return new WaitForSeconds(20f / this.speed);
         this.gameObject.SetActive(false);
     }
     
-    public void Initialize(Entity owner, float speed, Vector3 direction, float damage)
+    public void Initialize(Entity owner, float speed, Vector3 direction, float damage, bool? canSelfDestroy)
     {
         this.entityOwner = owner;
         this.entityStats = this.entityOwner.GetComponent<EntityStats>();
@@ -34,8 +35,9 @@ public class Projectile : MonoBehaviour
         this.baseDamage = damage;
         this.started = true;
         this.direction = direction;
-
-        StartCoroutine(SelfDestroy());
+        
+        if (canSelfDestroy != null)
+            StartCoroutine(SelfDestroy());
     }
 
     private void FixedUpdate()
@@ -49,7 +51,8 @@ public class Projectile : MonoBehaviour
     {
       if (!this.started) return;
       if (!this.gameObject.activeInHierarchy) return;
-      
+
+      if (!this.canDamage) return;
       Ray ray = new Ray(this.transform.position, this.direction.normalized);
       Debug.DrawRay(ray.origin, ray.direction, Color.red);
       if (Physics.Raycast(ray, out RaycastHit hit))

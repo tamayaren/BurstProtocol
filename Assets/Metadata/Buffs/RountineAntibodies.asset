@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607e49fd0505889479e953f572c1f1ba, type: 3}
+  m_Name: RountineAntibodies
+  m_EditorClassIdentifier: 
+  fullName: Mutation
+  buffDescription: For the next wave, a random stat is increased by 2% of current
+    stat, which persists throughout the wave, until the next wave it will be removed
+    and another stat is selected.
+  maxStacks: 1
