@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DG.Tweening.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,9 +23,29 @@ public class GameplayManager : MonoBehaviour
     public float timeElapsed;
     public float timeElapsedTimer = 5f;
 
+    public GameObject player;
+    public Entity playerEntity;
+    public EntityStats playerStats;
+    
+    public int enemyKilled;
+    public int killRequired;
+    
+    public int nextLevel;
+    
+    public UnityEvent<int> OnEnemyKilled = new UnityEvent<int>();
+    public UnityEvent<int> OnKillRequired = new UnityEvent<int>();
+    public UnityEvent<int> OnNextLevel = new UnityEvent<int>();
+    
     private void Start()
     {
         DOTween.SetTweensCapacity(500, 100);
+        DOTween.defaultEaseType = Ease.Linear;
+        
+        this.player = GameObject.FindGameObjectWithTag("Player");
+        this.playerStats = this.player.GetComponent<EntityStats>();
+        this.playerEntity = this.player.GetComponent<Entity>();
+
+        this.nextLevel = 5;
     }
     private void Update()
     {
@@ -50,7 +71,24 @@ public class GameplayManager : MonoBehaviour
     {
       this.score += score;  
       this.ScoreChanged.Invoke(this.score);
-    } 
+    }
+
+    public void AddNewEnemyKill()
+    {
+        this.enemyKilled++;
+        this.killRequired++;
+        
+        if (this.killRequired >= this.nextLevel)
+        {
+            this.killRequired = 0;
+            this.nextLevel = (int)(this.nextLevel * 1.5f);
+            
+            this.playerStats.LevelUp();
+            this.OnNextLevel.Invoke(this.nextLevel);
+        }
+        this.OnEnemyKilled.Invoke(this.enemyKilled);
+        this.OnKillRequired.Invoke(this.killRequired);
+    }
     
     public int GetScore() => this.score;
 

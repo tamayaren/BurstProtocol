@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Game.Mechanics.Organelles;
 using TMPro;
+using Unity.Mathematics.Geometry;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -42,6 +43,21 @@ public class StatsDisplay : MonoBehaviour
             }
         }
         
+        this.playerStats.LevelChanged.AddListener((lastValue, newValue) =>
+        {
+            TextMeshProUGUI text = this.statValues[0];
+            TextMeshProUGUI added = this.statAdded[0];
+
+            if (text && added)
+            {
+                float lastObject = (newValue - lastValue);
+                added.text = $"{(lastObject < 0 ? "-" : "+")}{Mathf.Abs(lastObject).ToString()}";
+                added.color = lastObject < 0 ? Color.red : Color.green;
+                
+                added.DOFade(0f, 1f).SetAutoKill(true).SetDelay(3f);
+                text.text = newValue.ToString();
+            }
+        });
         this.playerStats.StatChanged.AddListener((statName, lastValue, newValue) =>
         {
             int index = this.statNames.IndexOf(statName);
@@ -50,8 +66,8 @@ public class StatsDisplay : MonoBehaviour
 
             if (text && added)
             {
-                int lastObject = (lastValue + newValue);
-                added.text = $"{(lastObject < 0 ? "-" : "+")}{(lastObject).ToString()}";
+                int lastObject = (newValue - lastValue);
+                added.text = $"{(lastObject < 0 ? "-" : "+")}{Mathf.Abs(lastObject).ToString()}";
                 added.color = lastObject < 0 ? Color.red : Color.green;
                 
                 added.DOFade(0f, 1f).SetAutoKill(true).SetDelay(3f);

@@ -35,8 +35,18 @@ namespace SkillSet {
             this.stats = entity.GetComponent<EntityStats>();
         }
 
+        private IEnumerator Cooldown()
+        {
+            Debug.Log("MOVE COOLDOWN 1");
+            this.onCooldown = true;
+            yield return new WaitForSeconds(this.cooldownDuration);
+            Debug.Log("MOVE COOLDOWN 2");
+            this.onCooldown = false;
+        }
+
         public bool Perform(Entity entity, MonoBehaviour runner)
         {
+            Debug.Log($"PERFORMANCE MOVE: {this.onCooldown}");
             if (this.onCooldown) return false;
             
             Debug.Log("Perform action");
@@ -53,6 +63,8 @@ namespace SkillSet {
         public virtual float Action(Entity entity, MonoBehaviour runner)
         {
             Debug.Log("Action performed!");
+
+            runner.StartCoroutine(Cooldown());
             return this.cooldownDuration;
         }
 

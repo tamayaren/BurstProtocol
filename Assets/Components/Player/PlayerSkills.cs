@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -15,53 +16,14 @@ namespace SkillSet
         [SerializeField] public SkillLogic[] skills;
 
         public SkillLogic CurrentSkillPerforming;
-        private Dictionary<SkillLogic, float> cooldownManager = new Dictionary<SkillLogic, float>();
-        private Dictionary<SkillLogic, float> cooldownQueue = new Dictionary<SkillLogic, float>();
         
         private void Start()
         {
             this.inputManager.skillActionRequest.AddListener(Perform);
         }
 
-        private void ManageCooldown()
-        {
-            if (this.cooldownQueue.Count > 0)
-            {
-                foreach (KeyValuePair<SkillLogic, float> kvp in this.cooldownQueue)
-                {
-                    kvp.Key.onCooldown = true;
-                    this.cooldownManager.TryAdd(kvp.Key, kvp.Value);
-                }
-
-
-                this.cooldownQueue.Clear();
-            }
-            
-            foreach (KeyValuePair<SkillLogic, float> skill in this.cooldownManager)
-            {
-                SkillLogic skillLogic = skill.Key;
-                float timer = skill.Value;
-                
-                Debug.Log("CheckingTimer " + skill.Value);
-                skillLogic.onCooldown = true;
-                if (skill.Key == null || timer <= 0)
-                {
-                    this.cooldownManager.Remove(skillLogic);
-
-                    skillLogic.onCooldown = false;
-                    Debug.Log("CanPerformNow");
-                    break;
-                }
-                
-                this.cooldownManager[skillLogic] -= Time.deltaTime;
-            }
-        }
-
         private void Update()
         {
-            if (this.cooldownManager.Count > 0)
-                ManageCooldown();
-
             if (this.CurrentSkillPerforming != null) 
                 this.CurrentSkillPerforming.Update(this.entity, this);
         }
@@ -106,6 +68,16 @@ namespace SkillSet
             Debug.Log(this.skills.Length);
             Debug.Log(this.skills[0]?.skillName);
         }
+
+        public List<string> cooldowns = new List<string>();
+        public IEnumerator Cooldown(string name, float cooldownDuration)
+        {
+            this.cooldowns.Add(name);
+            Debug.Log("MOVE PERFORMANCE " + name);
+            yield return new WaitForSeconds(cooldownDuration);
+            Debug.Log("MOVE PERFORMANCE 2 " + name);
+            this.cooldowns.Remove(name);
+        }
         
         private void Perform(int id)
         {
@@ -121,17 +93,17 @@ namespace SkillSet
             if (skill.onCooldown) return;
             
             bool isValid = skill.Perform(this.entity, this);
-            if (isValid && !skill.onCooldown)
+            if (!this.cooldowns.Contains(id.ToString()))
             {
                 float cooldown = skill.Action(this.entity, this);
-                if (!this.cooldownQueue.ContainsKey(skill))
-                {
-                    this.cooldownQueue.TryAdd(skill, cooldown);
-                    SkillDisplay.instance.Cooldown(id, cooldown);
-                }
+
+                Aki_Skill1_Mono skillMono = GetComponent<Aki_Skill1_Mono>();
+                skillMono.Initialize(this.transform.Find("Weapon"));
+                skillMono.PerformMove();
                 this.CurrentSkillPerforming = skill;
-                
-                this.canSkill = false;
+                SkillDisplay.instance.Cooldown(id, cooldown);
+
+                StartCoroutine(Cooldown(id.ToString(), cooldown));
             }
         }
     }

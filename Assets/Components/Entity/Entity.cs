@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -38,14 +39,18 @@ public class Entity : MonoBehaviour
         }
     }
 
+    private EntityState lastValue;
     public EntityState EntityState
     {
         get => this._entityState;
         set
         {
             this._entityState = value;
+
+            if (value != this.lastValue)
+                this.EntityStateChanged.Invoke(this._entityState);
             
-            this.EntityStateChanged.Invoke(this._entityState);
+            this.lastValue = this._entityState;
         }
     }
     
@@ -54,6 +59,12 @@ public class Entity : MonoBehaviour
     public UnityEvent<EntityState> EntityStateChanged = new UnityEvent<EntityState>();
     public UnityEvent<int> DamageInflicted = new UnityEvent<int>();
     public List<string> CollectedBuff = new List<string>();
+
+    public IEnumerator OnExplode()
+    {
+        yield return new WaitForSeconds(.1f);
+        Destroy(this.gameObject);
+    }
     
     private void Start()
     {
@@ -63,8 +74,11 @@ public class Entity : MonoBehaviour
             if (health <= 0)
             {
                 this.EntityState = EntityState.Dead;
+                
+                if (this.gameObject.CompareTag("Player")) return;
                 GameplayManager.instance.SetScore(this.MaxHealth);
                 GameplayManager.instance.SetCombo(1, this.MaxHealth);
+                StartCoroutine(OnExplode());
             }
         });
     }
